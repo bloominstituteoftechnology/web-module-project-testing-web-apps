@@ -33,6 +33,7 @@
     ]
   },
   "devDependencies": {
-    "mutationobserver-shim": "^0.3.3"
+    "mutationobserver-shim": "^0.3.3",
+    "sass": "^1.32.5"
   }
 }
