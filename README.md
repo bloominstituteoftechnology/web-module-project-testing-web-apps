@@ -1,6 +1,6 @@
 # Integration Testing React Module Project : Contact Form - Testing
 
-This module explored the basics of the react-testing library and ideas behind the integration testing methology. In this project you will practice how to build tests that follow the arrange, act, assert model, different methods of quering for DOM elements in a test, the use of different expect types and using async/await to test for changes in state.
+This module explored the basics of the react-testing library and ideas behind the integration testing methodology. In this project you will practice how to build tests that follow the arrange-act-assert model, different methods of querying for DOM elements in a test, the use of different expect types and using async/await to test for changes in state.
 
 ## Testing Web Applications
 
@@ -37,16 +37,16 @@ As a developer, you will be writing tests for every component. As we've learned,
 
 #### Test Brainstorming
 * [ ] Run and play around with the form interface.
-* [ ] Write out a list of possible testcases for this application within Understading-questions.md.
+* [ ] Write out a list of possible testcases for this application within Understanding-questions.md.
 
-#### Complete a case that  tests if:
+#### Complete a case that tests if:
 * [ ] the component renders the contact form component without errors.
 * [ ] the header h1 element exists. Include three asserts, if the header is in the document, if the heads is truthy, if the header has the correct test content.
-* [ ] the component renders ONE error message if the user enters less then 4 characters into the firstname field. Make sure to use async / await and the correct screen method to account for state change.
+* [ ] the component renders ONE error message if the user enters less than 4 characters into the firstname field. Make sure to use async / await and the correct screen method to account for state change.
 * [ ] the component renders THREE error messages if the user submits without filling in any values.
 * [ ] the component renders ONE error message if the user submits without filling in the email field.
 * [ ] the component renders the text *"email must be a valid email address"* if an invalid email address is typed into the email field.
-* [ ] the component renders the text *"lastName is a required field"* the form is submited without a last name.
+* [ ] the component renders the text *"lastName is a required field"* the form is submitted without a last name.
 * [ ] the component renders the firstname, lastname and email text when submitted with valued fields and does **not** render a message value when one is not entered into the message field.
 * [ ] renders all fields when the user submits with valid text filled in for all fields.
 
@@ -55,4 +55,4 @@ As a developer, you will be writing tests for every component. As we've learned,
 
 - Look at your test cases in Understanding-questions and see if there are any that you have not completed.
 - From the this list or from your own mind, add in at least one more new testcase.
-- There is alot of state management within our component in this project! See if you can seperate the form and error validation code into there own hooks.
+- There is alot of state management within our component in this project! See if you can separate the form and error validation code into their own hooks.
