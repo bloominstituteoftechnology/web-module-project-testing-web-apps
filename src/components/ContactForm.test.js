@@ -28,12 +28,42 @@ test('renders ONE error message if user enters less then 5 characters into first
     expect(error).toBeInTheDocument();
 });
 
-// test('renders THREE error messages if user enters no values into any fields.', async () => {
+test('renders THREE error messages if user enters no values into any fields.', async () => {
+    //Arrange: render contact form
+    render(<ContactForm/>)
+    //Act: 
+    //find submit button
+    const button= screen.getByRole("button")
+    //click submit button
+    userEvent.click(button)
+    //find errors to be in the document 3 times. 
+    const error = screen.getAllByTestId(/error/i)
+    // const error1 = screen.getByTestId(/error/i)
+    // const error2 = screen.getByTestId(/error/i)
+    // console.log(error)
+   
+       
+    //Assert: all 3 errors are in the document. 
+    // expect(error).toBeInTheDocument();
+   await expect(error).toHaveLength(3)
     
-// });
+});
 
 // test('renders ONE error message if user enters a valid first name and last name but no email.', async () => {
-    
+//     //Arrange: render contact form
+//     render(<ContactForm/>)
+//     //Act: 
+//     //find firstname, type something in it
+//     //find lastname, type something in it
+//     //find submit button
+//     const button= screen.getByRole("button")
+//     //click submit button
+//     userEvent.click(button)
+//     //find 1 error to be in the document 
+//     const error = screen.getByTestId(/error/i)
+
+   
+//     expect(error).toBeInTheDocument();
 // });
 
 // test('renders "email must be a valid email address" if an invalid email is entered', async () => {
