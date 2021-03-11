@@ -81,7 +81,7 @@ const ContactForm = () => {
             id="firstName"
             placeholder="Edd"
           />
-          {(errors.firstName) && <p data-testid="error">Error: {errors.firstName}</p>}
+          {(errors.firstName) && <p data-testid="firsterror">Error: {errors.firstName}</p>}
         </div>
 
         <div>
@@ -93,7 +93,7 @@ const ContactForm = () => {
             value={form.lastName}
             placeholder="Burke"
           />
-          {(errors.lastName) && <p data-testid="error">Error: {errors.lastName}</p>}
+          {(errors.lastName) && <p data-testid="lasterror">Error: {errors.lastName}</p>}
         </div>
 
         <div>
@@ -105,7 +105,7 @@ const ContactForm = () => {
             value={form.email}
             placeholder="bluebill1049@hotmail.com"
           />
-          {(errors.email) && <p data-testid="error">Error: {errors.email}</p>}
+          {(errors.email) && <p data-testid="emailerror">Error: {errors.email}</p>}
         </div>
 
         <div>
@@ -115,13 +115,14 @@ const ContactForm = () => {
             name="message"
             id="message"
             value={form.message}
+            placeholder="message"
           />
-          {(errors.message) && <p data-testid="error">Error: {errors.message}</p>}
+          {(errors.message) && <p data-testid="messageerror">Error: {errors.message}</p>}
         </div>
 
         {displayData && <DisplayComponent form={form}/>}
 
-        <input type="submit" />
+        <input type="submit" data-testid="submit" />
       </form>
     </div>
   );
