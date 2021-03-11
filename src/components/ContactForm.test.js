@@ -38,9 +38,9 @@ test('renders THREE error messages if user enters no values into any fields.', a
     userEvent.click(button)
 
     await waitFor(() => {
-        expect(firstNameInput).toThrowError()
-        expect(LastNameInput).toThrowError()
-        expect(emailInput).toThrowError()
+        expect(firstNameInput).
+        expect(LastNameInput).
+        expect(emailInput).
     })
 
 });
