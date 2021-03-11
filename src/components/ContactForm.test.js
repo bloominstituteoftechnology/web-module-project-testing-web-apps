@@ -3,6 +3,7 @@ import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import ContactForm from "./ContactForm";
+import DisplayComponent from "./DisplayComponent";
 
 test("renders without errors", () => {
   render(<ContactForm />);
@@ -112,6 +113,66 @@ test('renders "lastName is a required field" if an last name is not entered and 
   expect(error).toBeInTheDocument();
 });
 
-test("renders all firstName, lastName and email text when submitted. Does NOT render message if message is not submitted.", async () => {});
+test("renders all firstName, lastName and email text when submitted. Does NOT render message if message is not submitted.", async () => {
+  // arrange
+  render(<ContactForm />);
+  render(<DisplayComponent />);
 
-test("renders all fields text when all fields are submitted.", async () => {});
+  // act:
+  // find firstName input and enter value
+  const firstNameInput = screen.queryByLabelText(/firstname/i);
+  userEvent.type(firstName, "Ralph");
+  // find lastName input and enter value
+  const lastNameInput = screen.queryByLabelText(/lastname/i);
+  userEvent.type(lastName, "Ralpherson");
+  // find email input and enter value
+  const emailInput = screen.queryByLabelText(/email/i);
+  userEvent.type(email, "ralph@ralpherson.com");
+  // find and click the button
+  const button = screen.getByRole("button");
+  userEvent.click(button);
+  // access new contact card
+  const firstName = await screen.queryByText(/ralph/i);
+  const lastName = await screen.queryByText(/ralpherson/i);
+  const email = await screen.queryByText(/ralph@ralpherson.com/i);
+  const message = await screen.queryByLabelText(/message/i);
+
+  // assert:
+  // new contact info should be on screen
+  expect(firstName).toBeInTheDocument();
+  expect(lastName).toBeInTheDocument();
+  expect(email).toBeInTheDocument();
+  // message does not appear on screen
+  expect(message).toNotBeInTheDocument();
+});
+
+test("renders all fields text when all fields are submitted.", async () => {
+  // arrange
+  render(<ContactForm />);
+
+  // act:
+  // find firstName input and enter value
+  const firstNameInput = screen.queryByLabelText(/firstname/i);
+  userEvent.type(firstName, "Ralph");
+  // find lastName input and enter value
+  const lastNameInput = screen.queryByLabelText(/lastname/i);
+  userEvent.type(lastName, "Ralpherson");
+  // find email input and enter value
+  const emailInput = screen.queryByLabelText(/email/i);
+  userEvent.type(email, "ralph@ralpherson.com");
+  // find and click the button
+  const button = screen.getByRole("button");
+  userEvent.click(button);
+  // access new contact card
+  const firstName = await screen.queryByText(/ralph/i);
+  const lastName = await screen.queryByText(/ralpherson/i);
+  const email = await screen.queryByText(/ralph@ralpherson.com/i);
+  const message = await screen.queryByLabelText(/I'm the greatest!/i);
+
+  // assert:
+  // new contact info should be on screen
+  expect(firstName).toBeInTheDocument();
+  expect(lastName).toBeInTheDocument();
+  expect(email).toBeInTheDocument();
+  expect(message).toBeInTheDocument();
+});
