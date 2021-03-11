@@ -14,9 +14,19 @@ test('renders the contact form header', ()=> {
     expect(header).toBeInTheDocument();
 });
 
-// test('renders ONE error message if user enters less then 5 characters into firstname.', async () => {
+test('renders ONE error message if user enters less then 5 characters into firstname.', async () => {
+    //Arrange: render Contact Form
+    render(<ContactForm/>)
+    //Act:
+    // find the firstname input
+    const firstname = screen.getByLabelText(/first name/i)
+    // type in a name that is less than 5 characters long
+    userEvent.type(firstname, "Tony")
     
-// });
+    //Assert: is there now an error that exists on the screen?
+    const error = screen.getByTestId(/error/i)
+    expect(error).toBeInTheDocument();
+});
 
 // test('renders THREE error messages if user enters no values into any fields.', async () => {
     
