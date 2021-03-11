@@ -49,22 +49,26 @@ test('renders THREE error messages if user enters no values into any fields.', a
     
 });
 
-// test('renders ONE error message if user enters a valid first name and last name but no email.', async () => {
-//     //Arrange: render contact form
-//     render(<ContactForm/>)
-//     //Act: 
-//     //find firstname, type something in it
-//     //find lastname, type something in it
-//     //find submit button
-//     const button= screen.getByRole("button")
-//     //click submit button
-//     userEvent.click(button)
-//     //find 1 error to be in the document 
-//     const error = screen.getByTestId(/error/i)
+test('renders ONE error message if user enters a valid first name and last name but no email.', async () => {
+    //Arrange: render contact form
+    render(<ContactForm/>)
+    //Act: 
+    //find firstname, type something in it
+    const firstname = screen.getByLabelText(/first name/i)
+    userEvent.type(firstname, "Monica")
+    //find lastname, type something in it
+    const lastname = screen.getByLabelText(/last name/i)
+    userEvent.type(lastname, "Zwissler")
+    //find submit button
+    const button= screen.getByRole("button")
+    //click submit button
+    userEvent.click(button)
+    //find 1 error to be in the document 
+    const error = screen.getAllByTestId(/error/i)
 
    
-//     expect(error).toBeInTheDocument();
-// });
+    expect(error).toHaveLength(1)
+});
 
 // test('renders "email must be a valid email address" if an invalid email is entered', async () => {
     
