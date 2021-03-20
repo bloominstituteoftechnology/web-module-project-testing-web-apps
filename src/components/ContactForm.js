@@ -1,126 +1,71 @@
 import React, { useState } from "react";
-import DisplayComponent from './DisplayComponent';
-
-const formData = {
-  firstName: "",
-  lastName: "",
-  email: "",
-  message: ""
-}
-
-const errorData = {
-  firstName: "",
-  lastName: "",
-  email: "",
-  message: ""
-}
+import { useForm } from "react-hook-form";
 
 const ContactForm = () => {
-  const [displayData, setDisplayData] = useState(false);
-  const [form, setForm] = useState(formData);
-  const [errors, setErrors] = useState(errorData);
-
-  const errorHandling = (fieldName, fieldValue) => {
-    if (fieldName === "firstName" && fieldValue.length < 5)
-      return `${fieldName} must have at least 5 characters.`;
-
-    const emailRegex = /(.*)@(.*)\.(.+)/g;
-    if (fieldName === "email" && !fieldValue.match(emailRegex))
-      return `${fieldName} must be a valid email address.`;
-
-    if (fieldName !== "message" && fieldValue === "")
-      return `${fieldName} is a required field.`;
-    
-    return "";
-  }
-
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    const submitErrors = {};
-    Object.keys(errors).forEach(field => {
-      submitErrors[field] = errorHandling(field, form[field])
-    });
-    
-    setErrors(submitErrors);
-    
-    const hasErrors = (submitErrors.firstName === "" && submitErrors.lastName === "" && submitErrors.email === "" && submitErrors.message === "");
-    setDisplayData(hasErrors);
-      
+  const [data, setData] = useState();
+  const { register, errors, handleSubmit } = useForm({
+    mode: "onBlur",
+  });
+  const onSubmit = (data) => {
+    setData(data);
   };
-
-  const handleChange = (e) => {
-    const errorMessage = errorHandling(e.target.name, e.target.value);
-
-    if (errorMessage !== "") {
-      setDisplayData(false);
-    }
-
-    setErrors({
-      ...errors,
-      [e.target.name]: errorMessage
-    });
-
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value
-    });
-  }
 
   return (
     <div className="App">
-      <h1>Contact Form</h1>
-      <form onSubmit={handleSubmit}>
+      <h1>Form</h1>
+      <form onSubmit={handleSubmit(onSubmit)}>
         <div>
           <label htmlFor="firstName">First Name*</label>
           <input
-            onChange={handleChange}
+            id = "firstName"
             name="firstName"
-            value={form.firstName}
-            id="firstName"
             placeholder="Edd"
+            ref={register({ required: true, maxLength: 12 })}
           />
-          {(errors.firstName) && <p data-testid="error">Error: {errors.firstName}</p>}
+          {errors.firstName && (
+            <p>Looks like there was an error: {errors.firstName.type}</p>
+          )}
         </div>
 
         <div>
           <label htmlFor="lastName">Last Name*</label>
           <input
-            onChange={handleChange}
             id="lastName"
             name="lastName"
-            value={form.lastName}
             placeholder="Burke"
+            ref={register({ required: true })}
           />
-          {(errors.lastName) && <p data-testid="error">Error: {errors.lastName}</p>}
+          {errors.lastName && (
+            <p>Looks like there was an error: {errors.lastName.type}</p>
+          )}
         </div>
 
         <div>
-          <label htmlFor="email">Email*</label>
-          <input 
-            onChange={handleChange}
+          <label htmlFor="email">
+            Email*
+          </label>
+          <input name="email" 
             id="email"
-            name="email" 
-            value={form.email}
             placeholder="bluebill1049@hotmail.com"
+            ref={register({ required: true })} 
           />
-          {(errors.email) && <p data-testid="error">Error: {errors.email}</p>}
+          {errors.email && (
+            <p>Looks like there was an error: {errors.email.type}</p>
+          )}
         </div>
-
         <div>
           <label htmlFor="message">Message</label>
           <textarea
-            onChange={handleChange}
             name="message"
-            id="message"
-            value={form.message}
+            id="message" 
+            ref={register({ required: false })} 
           />
-          {(errors.message) && <p data-testid="error">Error: {errors.message}</p>}
         </div>
-
-        {displayData && <DisplayComponent form={form}/>}
-
+        {data && (
+          <pre style={{ textAlign: "left", color: "white" }}>
+            {JSON.stringify(data, null, 2)}
+          </pre>
+        )}
         <input type="submit" />
       </form>
     </div>

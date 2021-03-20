@@ -100,7 +100,6 @@ input[type="submit"] {
 .App {
   max-width: 600px;
   margin: 0 auto;
-  padding: 20px;
 }
 
 button[type="button"] {
@@ -131,29 +130,4 @@ button {
   text-transform: uppercase;
   padding: 10px 20px;
   border-radius: 4px;
-}
-
-#displayContainer {
-  background: grey;
-  padding: 10px 20px 10px 20px;
-  margin-top: 20px;
-  border-radius: 5px;
-  box-shadow: #333 10px 10px 2px;
-}
-
-#displayContainer h1 {
-  font-weight: 80;
-  font-size: 25px;
-  color: white;
-  text-align: center;
-  padding-bottom: 10px;
-  border-bottom: 1px solid white;
-}
-
-#displayContainer p {
-  color: white;
-}
-
-#displayContainer p::before {
-  display: none;
 }

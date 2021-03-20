@@ -1,6 +1,6 @@
-# Integration Testing React Module Project : Contact Form - Testing
+# Contact Form - Testing
 
-This module explored the basics of the react-testing library and ideas behind the integration testing methodology. In this project you will practice how to build tests that follow the arrange-act-assert model, different methods of querying for DOM elements in a test, the use of different expect types and using async/await to test for changes in state.
+## Advanced React Sprint
 
 ## Testing Web Applications
 
@@ -8,8 +8,7 @@ This module explored the basics of the react-testing library and ideas behind th
 
 - explain what automated testing is and its importance
 - use react-testing-library for testing react components
-- use react-testing-library to test user interactions with userEvent
-- use async / await and waitFor to test changes in a components state.
+- use react-testing-library to test user interactions with fireEvent
 
 ## Introduction
 
@@ -17,42 +16,52 @@ In this challenge, you will be writing tests for a contact form that has been bu
 
 As a developer, you will be writing tests for every component. As we've learned, tests are a very important part of programming. The tests you will write will help you feel confident in the code you push to production!
 
-![Contact Example](project-goals.gif)
+## Project Set Up
 
-***Make sure to complete your tasks one at a time and complete test each task before proceding forward.***
+- [ ] Create a forked copy of this project.
+- [ ] Clone your OWN version of the repository in your terminal.
+- [ ] CD into the project base directory.
+- [ ] Download project dependencies by running `npm install`.
+- [ ] Start up the app using `npm start`.
+- [ ] Create a new branch: git checkout -b `<firstName-lastName>`.
+- [ ] Implement the project on your newly created `<firstName-lastName>` branch, committing changes regularly.
+- [ ] Push commits: git push origin `<firstName-lastName>`.
 
-## Instructions
-### Task 1: Project Set Up
-* [ ] Create a forked copy of this project.
-* [ ] Clone your OWN version of the repository in your terminal
-* [ ] cd into the project base directory `cd web-module-project-reducer-pattern`
-* [ ] Download project dependencies by running `npm install`
-* [ ] Start up the app using `npm start`
+**Test Runner**
 - [ ] In a new terminal window, run `npm test`
 - [ ] With each saved change in your editor, the test runner will re-run all the tests
 - [ ] **IMPORTANT** If a test fails, use the test runner's error messages to find out why it is failing
 
-### Task 2: Project Requirements
-> *All of the work you will do today will be contained inside the ContactForm.test.js file. You will be tasked to write the code for at least 9 different tests on various parts of the ContactForm component. Please read the instructions for each test carefully.*
+## Instructions and/or completion requirements (MVP)
 
-#### Test Brainstorming
-* [ ] Run and play around with the form interface.
-* [ ] Write out a list of possible testcases for this application within Understanding-questions.md.
+In order to complete your mission for today, you will need to write tests to help you feel confident in shipping this component. Below is a _general_ outline of how to accomplish this.
 
-#### Complete a case that tests if:
-* [ ] the component renders the contact form component without errors.
-* [ ] the header h1 element exists. Include three asserts, if the header is in the document, if the heads is truthy, if the header has the correct test content.
-* [ ] the component renders ONE error message if the user enters less than 4 characters into the firstname field. Make sure to use async / await and the correct screen method to account for state change.
-* [ ] the component renders THREE error messages if the user submits without filling in any values.
-* [ ] the component renders ONE error message if the user submits without filling in the email field.
-* [ ] the component renders the text *"email must be a valid email address"* if an invalid email address is typed into the email field.
-* [ ] the component renders the text *"lastName is a required field"* the form is submitted without a last name.
-* [ ] the component renders the firstname, lastname and email text when submitted with valued fields and does **not** render a message value when one is not entered into the message field.
-* [ ] renders all fields when the user submits with valid text filled in for all fields.
+1. Take a good amount of time to use the form. Find out what behaviors you expect, and any you don't expect. (Don't fix unexpected behaviors yet. We want our test to show us what's wrong in the UI, then fix the behavior - we'll walk you through that down below)
+1. Write down on a piece of paper what you want to test. (This is a very important step - always plan before coding!)
+1. Add your first test. This one should be a very simple test to make sure the testing setup is working.
+1. Write a sufficient amount of tests to give you confidence in the project's code
 
+_If you come across any "unexpected" behaviors in the form UI (not the test), try this flow:_
+
+- [ ] You may have noticed that the form validation for one of the inputs is a little off...
+- [ ] Write a test for the "expected" behavior (it will fail because something in the component is doing something unexpected)
+- [ ] Confirm that the test fails, because of the "unexpected" behavior
+- [ ] Look at the code in the project to find what is causing the behavior
+- [ ] Fix the code so that your new test passes
+- [ ] Celebrate that your test helped you find and fix a bug!
 
 ## Stretch goals
 
-- Look at your test cases in Understanding-questions and see if there are any that you have not completed.
-- From the this list or from your own mind, add in at least one more new testcase.
-- There is alot of state management within our component in this project! See if you can separate the form and error validation code into their own hooks.
+- Using the [REQ|RES API](https://reqres.in/), build out a POST request in the form.
+
+  - Using the [React Testing Library Docs](https://testing-library.com/docs/react-testing-library/intro), study how to test async calls
+  - Write a new test to cover your new async call
+
+- Add more elements to the form - eg dropdown, checkbox, etc
+  - Add tests to include the new form elements
+
+## Submission Format
+
+- [ ] Submit a Pull-Request to merge <firstName-lastName> Branch into `main` (student's Repository). **Please don't merge your own pull request**
+- [ ] From the home page of your repo, make sure you have your branch selected
+- [ ] Copy the URL and paste it into Canvas to submit your project
