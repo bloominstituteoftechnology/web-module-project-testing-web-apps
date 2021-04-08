@@ -5,19 +5,56 @@ import userEvent from '@testing-library/user-event';
 import ContactForm from './ContactForm';
 
 test('renders without errors', ()=>{
-    
+    render(<ContactForm />);
 });
 
 test('renders the contact form header', ()=> {
-    
+    render(<ContactForm />);
+
+    const header = screen.queryByText('Contact Form');
+
+    expect(header).toBeInTheDocument();
+    expect(header).toBeTruthy();
+    expect(header).toHaveTextContent(/contact form/i);
+
+
 });
 
 test('renders ONE error message if user enters less then 5 characters into firstname.', async () => {
-    
+    render(<ContactForm />);
+
+    const firstNameField = screen.getByLabelText(/first name/i);
+    userEvent.type(firstNameField, "abc");
+
+    const submitButton = screen.getByRole('button');
+    userEvent.click(submitButton);
+
+    await waitFor(() => {
+        const firstNameError = screen.queryByText(/error: firstname must have at least 5 characters./i)
+        expect(firstNameError).toBeInTheDocument();
+    })
 });
 
 test('renders THREE error messages if user enters no values into any fields.', async () => {
-    
+    render(<ContactForm />);
+
+    const submitButton = screen.getByRole('button');
+    userEvent.click(submitButton);
+
+    await waitFor(() => {
+        const firstNameError = screen.queryByText(/error: firstname must have at least 5 characters./i)
+        expect(firstNameError).toBeInTheDocument();
+
+        const lastNameError = screen.queryByText(/error: lastName is a required field./i)
+        expect(lastNameError).toBeInTheDocument();
+
+        const emailError = screen.queryByText(/error: email must be a valid email address./i)
+        expect(emailError).toBeInTheDocument();
+        
+        
+    })
+
+
 });
 
 test('renders ONE error message if user enters a valid first name and last name but no email.', async () => {
