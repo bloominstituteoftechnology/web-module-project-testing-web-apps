@@ -113,14 +113,14 @@ test('renders all firstName, lastName and email text when submitted. Does NOT re
     userEvent.click(submitButton);
 
     const firstResult = await screen.queryByTestId(/firstnamedisplay/i);
-    expect(firstResult).toBeInTheDocument();
+    expect(firstResult).toContainHTML(first);
     const lastResult = await screen.queryByTestId(/lastnamedisplay/i);
-    expect(lastResult).toBeInTheDocument();
+    expect(lastResult).toContainHTML(last);
     const emailResult = await screen.queryByTestId(/emaildisplay/i);
-    expect(emailResult).toBeInTheDocument();
+    expect(emailResult).toContainHTML(email);
     const messageResult = await screen.queryByTestId(/messagedisplay/i);
     expect(messageResult).not.toBeInTheDocument();
-  
+
 });
 
 test('renders all fields text when all fields are submitted.', async () => {
