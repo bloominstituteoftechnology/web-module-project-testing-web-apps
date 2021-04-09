@@ -45,8 +45,8 @@ As a developer, you will be writing tests for every component. As we've learned,
 * [X] the component renders ONE error message if the user enters less than 4 characters into the firstname field. Make sure to use async / await and the correct screen method to account for state change.
 * [X] the component renders THREE error messages if the user submits without filling in any values.
 * [X] the component renders ONE error message if the user submits without filling in the email field.
-* [ ] the component renders the text *"email must be a valid email address"* if an invalid email address is typed into the email field.
-* [ ] the component renders the text *"lastName is a required field"* the form is submitted without a last name.
+* [X] the component renders the text *"email must be a valid email address"* if an invalid email address is typed into the email field.
+* [X] the component renders the text *"lastName is a required field"* the form is submitted without a last name.
 * [ ] the component renders the firstname, lastname and email text when submitted with valued fields and does **not** render a message value when one is not entered into the message field.
 * [ ] renders all fields when the user submits with valid text filled in for all fields.
 
