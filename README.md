@@ -23,12 +23,12 @@ As a developer, you will be writing tests for every component. As we've learned,
 
 ## Instructions
 ### Task 1: Project Set Up
-* [ ] Create a forked copy of this project.
-* [ ] Clone your OWN version of the repository in your terminal
-* [ ] cd into the project base directory `cd web-module-project-reducer-pattern`
-* [ ] Download project dependencies by running `npm install`
-* [ ] Start up the app using `npm start`
-- [ ] In a new terminal window, run `npm test`
+* [x] Create a forked copy of this project.
+* [x] Clone your OWN version of the repository in your terminal
+* [x] cd into the project base directory `cd web-module-project-reducer-pattern`
+* [x] Download project dependencies by running `npm install`
+* [x] Start up the app using `npm start`
+- [x] In a new terminal window, run `npm test`
 - [ ] With each saved change in your editor, the test runner will re-run all the tests
 - [ ] **IMPORTANT** If a test fails, use the test runner's error messages to find out why it is failing
 
@@ -36,9 +36,10 @@ As a developer, you will be writing tests for every component. As we've learned,
 > *All of the work you will do today will be contained inside the ContactForm.test.js file. You will be tasked to write the code for at least 9 different tests on various parts of the ContactForm component. Please read the instructions for each test carefully.*
 
 #### Test Brainstorming
-* [ ] Run and play around with the form interface.
-* [ ] Write out a list of possible testcases for this application within Understanding-questions.md.
-
+* [x] Run and play around with the form interface.
+* [x] Write out a list of possible testcases for this application within Understanding-questions.md.
+* Possible cases for tests: if the website is being displayed, if every single component of the input fied is being
+* registered, and if the submit button works
 #### Complete a case that tests if:
 * [ ] the component renders the contact form component without errors.
 * [ ] the header h1 element exists. Include three asserts, if the header is in the document, if the heads is truthy, if the header has the correct test content.
