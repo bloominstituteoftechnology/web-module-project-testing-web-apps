@@ -121,7 +121,7 @@ const ContactForm = () => {
 
         {displayData && <DisplayComponent form={form}/>}
 
-        <input type="submit" />
+        <input data-testid='submitButton' type="submit" />
       </form>
     </div>
   );
