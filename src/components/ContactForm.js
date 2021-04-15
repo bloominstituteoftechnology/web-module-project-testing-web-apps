@@ -1,19 +1,19 @@
 import React, { useState } from "react";
-import DisplayComponent from './DisplayComponent';
+import DisplayComponent from "./DisplayComponent";
 
 const formData = {
   firstName: "",
   lastName: "",
   email: "",
-  message: ""
-}
+  message: "",
+};
 
 const errorData = {
   firstName: "",
   lastName: "",
   email: "",
-  message: ""
-}
+  message: "",
+};
 
 const ContactForm = () => {
   const [displayData, setDisplayData] = useState(false);
@@ -24,30 +24,35 @@ const ContactForm = () => {
     if (fieldName === "firstName" && fieldValue.length < 5)
       return `${fieldName} must have at least 5 characters.`;
 
+    // if (fieldName === "lastName" && fieldValue.length < 5)
+    //   return `${fieldName} must have at least 5 characters.`;
+
     const emailRegex = /(.*)@(.*)\.(.+)/g;
     if (fieldName === "email" && !fieldValue.match(emailRegex))
       return `${fieldName} must be a valid email address.`;
 
     if (fieldName !== "message" && fieldValue === "")
       return `${fieldName} is a required field.`;
-    
-    return "";
-  }
 
+    return "";
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
     const submitErrors = {};
-    Object.keys(errors).forEach(field => {
-      submitErrors[field] = errorHandling(field, form[field])
+    Object.keys(errors).forEach((field) => {
+      submitErrors[field] = errorHandling(field, form[field]);
     });
-    
+
     setErrors(submitErrors);
-    
-    const hasErrors = (submitErrors.firstName === "" && submitErrors.lastName === "" && submitErrors.email === "" && submitErrors.message === "");
+
+    const hasErrors =
+      submitErrors.firstName === "" &&
+      submitErrors.lastName === "" &&
+      submitErrors.email === "" &&
+      submitErrors.message === "";
     setDisplayData(hasErrors);
-      
   };
 
   const handleChange = (e) => {
@@ -59,14 +64,14 @@ const ContactForm = () => {
 
     setErrors({
       ...errors,
-      [e.target.name]: errorMessage
+      [e.target.name]: errorMessage,
     });
 
     setForm({
       ...form,
-      [e.target.name]: e.target.value
+      [e.target.name]: e.target.value,
     });
-  }
+  };
 
   return (
     <div className="App">
@@ -81,7 +86,9 @@ const ContactForm = () => {
             id="firstName"
             placeholder="Edd"
           />
-          {(errors.firstName) && <p data-testid="error">Error: {errors.firstName}</p>}
+          {errors.firstName && (
+            <p data-testid="error">Error: {errors.firstName}</p>
+          )}
         </div>
 
         <div>
@@ -93,19 +100,21 @@ const ContactForm = () => {
             value={form.lastName}
             placeholder="Burke"
           />
-          {(errors.lastName) && <p data-testid="error">Error: {errors.lastName}</p>}
+          {errors.lastName && (
+            <p data-testid="error">Error: {errors.lastName}</p>
+          )}
         </div>
 
         <div>
           <label htmlFor="email">Email*</label>
-          <input 
+          <input
             onChange={handleChange}
             id="email"
-            name="email" 
+            name="email"
             value={form.email}
             placeholder="bluebill1049@hotmail.com"
           />
-          {(errors.email) && <p data-testid="error">Error: {errors.email}</p>}
+          {errors.email && <p data-testid="error">Error: {errors.email}</p>}
         </div>
 
         <div>
@@ -116,10 +125,10 @@ const ContactForm = () => {
             id="message"
             value={form.message}
           />
-          {(errors.message) && <p data-testid="error">Error: {errors.message}</p>}
+          {errors.message && <p data-testid="error">Error: {errors.message}</p>}
         </div>
 
-        {displayData && <DisplayComponent form={form}/>}
+        {displayData && <DisplayComponent form={form} />}
 
         <input type="submit" />
       </form>
