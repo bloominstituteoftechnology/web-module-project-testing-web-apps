@@ -1,14 +1,16 @@
 import React, { useState } from "react";
 import DisplayComponent from './DisplayComponent';
+import { useForm } from "../hooks/useForm";
+import { useValidation } from "../hooks/useValidation";
 
-const formData = {
+const initialValues = {
   firstName: "",
   lastName: "",
   email: "",
   message: ""
 }
 
-const errorData = {
+const initialErrorValues = {
   firstName: "",
   lastName: "",
   email: "",
@@ -16,15 +18,20 @@ const errorData = {
 }
 
 const ContactForm = () => {
-  const [displayData, setDisplayData] = useState(false);
-  const [form, setForm] = useState(formData);
-  const [errors, setErrors] = useState(errorData);
+  // const [displayData, setDisplayData] = useState(false); REFACTORED --> moved to useValidation
 
+  // const [form, setForm] = useState(formData); REFACTORED TO:
+  const [values, handleChange, clearForm] = useForm(initialValues);
+
+  // const [errors, setErrors] = useState(errorData); REFACTORED TO:
+  const [errors, displayData, validateForm] = useValidation(initialErrorValues); 
+
+  /* REFACTORED --> moved to useValidation
   const errorHandling = (fieldName, fieldValue) => {
     if (fieldName === "firstName" && fieldValue.length < 5)
       return `${fieldName} must have at least 5 characters.`;
 
-    const emailRegex = /(.*)@(.*)\.(.+)/g;
+    const emailRegex = /(.*)@(.*)\.(.+)/g; // g means many matches, wrong?
     if (fieldName === "email" && !fieldValue.match(emailRegex))
       return `${fieldName} must be a valid email address.`;
 
@@ -33,40 +40,52 @@ const ContactForm = () => {
     
     return "";
   }
-
+  */
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
+    const hasErrors = validateForm(values);
+    /*
+    REFACTORED --> moved to useValidation
     const submitErrors = {};
-    Object.keys(errors).forEach(field => {
-      submitErrors[field] = errorHandling(field, form[field])
+    Object.keys(errors).forEach(fieldName => {
+      submitErrors[fieldName] = errorHandling(fieldName, values[fieldName])
     });
     
     setErrors(submitErrors);
-    
-    const hasErrors = (submitErrors.firstName === "" && submitErrors.lastName === "" && submitErrors.email === "" && submitErrors.message === "");
-    setDisplayData(hasErrors);
-      
-  };
+    */
 
-  const handleChange = (e) => {
-    const errorMessage = errorHandling(e.target.name, e.target.value);
-
-    if (errorMessage !== "") {
-      setDisplayData(false);
+    // if there are no errors, then call clearFrom();
+    if (!hasErrors) {
+      clearForm();
     }
 
-    setErrors({
-      ...errors,
-      [e.target.name]: errorMessage
-    });
 
-    setForm({
-      ...form,
-      [e.target.name]: e.target.value
-    });
-  }
+
+    // const hasErrors = (submitErrors.firstName === "" && submitErrors.lastName === "" && submitErrors.email === "" && submitErrors.message === "");
+    // setDisplayData(hasErrors);
+      alert("submitted")
+  };
+
+  // const handleChange = (e) => {
+  //   console.log("e.target.name",e.target.name)
+  //   const errorMessage = errorHandling(e.target.name, e.target.value);
+
+  //   if (errorMessage !== "") {
+  //     setDisplayData(false);
+  //   }
+
+  //   setErrors({
+  //     ...errors,
+  //     [e.target.name]: errorMessage
+  //   });
+
+  //   setForm({
+  //     ...form,
+  //     [e.target.name]: e.target.value
+  //   });
+  // }
 
   return (
     <div className="App">
@@ -77,7 +96,7 @@ const ContactForm = () => {
           <input
             onChange={handleChange}
             name="firstName"
-            value={form.firstName}
+            value={values.firstName}
             id="firstName"
             placeholder="Edd"
           />
@@ -90,7 +109,7 @@ const ContactForm = () => {
             onChange={handleChange}
             id="lastName"
             name="lastName"
-            value={form.lastName}
+            value={values.lastName}
             placeholder="Burke"
           />
           {(errors.lastName) && <p data-testid="error">Error: {errors.lastName}</p>}
@@ -102,7 +121,7 @@ const ContactForm = () => {
             onChange={handleChange}
             id="email"
             name="email" 
-            value={form.email}
+            value={values.email}
             placeholder="bluebill1049@hotmail.com"
           />
           {(errors.email) && <p data-testid="error">Error: {errors.email}</p>}
@@ -114,12 +133,14 @@ const ContactForm = () => {
             onChange={handleChange}
             name="message"
             id="message"
-            value={form.message}
-          />
-          {(errors.message) && <p data-testid="error">Error: {errors.message}</p>}
+            value={values.message}
+            />
+
+        {(errors.message) && <p data-testid="error">Error: {errors.message}</p>}
+
         </div>
 
-        {displayData && <DisplayComponent form={form}/>}
+        {displayData && <DisplayComponent form={values}/>}
 
         <input type="submit" />
       </form>
