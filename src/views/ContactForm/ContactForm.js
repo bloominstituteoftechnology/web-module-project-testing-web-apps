@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import DisplayComponent from './DisplayComponent';
+import DisplayComponent from '../DisplayComponent';
 
 const formData = {
   firstName: "",
@@ -21,8 +21,8 @@ const ContactForm = () => {
   const [errors, setErrors] = useState(errorData);
 
   const errorHandling = (fieldName, fieldValue) => {
-    if (fieldName === "firstName" && fieldValue.length < 5)
-      return `${fieldName} must have at least 5 characters.`;
+    if (fieldName === "firstName" && fieldValue.length < 2)
+      return `${fieldName} is required AND must have at least 2 characters.`;
 
     const emailRegex = /(.*)@(.*)\.(.+)/g;
     if (fieldName === "email" && !fieldValue.match(emailRegex))
