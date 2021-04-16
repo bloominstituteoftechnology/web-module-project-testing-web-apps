@@ -57,9 +57,9 @@ const ContactForm = () => {
     */
 
     // if there are no errors, then call clearFrom();
-    if (!hasErrors) {
-      clearForm();
-    }
+    // if (!hasErrors) {
+    //   clearForm();
+    // }
 
 
 
@@ -84,7 +84,8 @@ const ContactForm = () => {
   //     ...form,
   //     [e.target.name]: e.target.value
   //   });
-  // }
+  // // }
+  // console.log("Contact Form render: ", displayData);
 
   return (
     <div className="App">
@@ -141,7 +142,10 @@ const ContactForm = () => {
 
         {displayData && <DisplayComponent form={values}/>}
 
-        <input type="submit" />
+        <input data-testid="submitButton" type="submit" />
+ 
+        <button data-testid="clearFormButton" className="clear-form-button" onClick={clearForm}>Clear Form</button>
+  
       </form>
     </div>
   );

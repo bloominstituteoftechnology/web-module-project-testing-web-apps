@@ -13,6 +13,8 @@ export const useForm = (initialValues) => {
   const clearForm = () => {
     // e.preventDefault();
     setValues(initialValues);
+    // localStorage.clear();
+    // history.push("/");
   };
 
   return [values, handleChange, clearForm];

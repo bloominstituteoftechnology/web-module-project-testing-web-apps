@@ -12,7 +12,8 @@ import { useState } from "react";
 export const useValidation = (initialErrorValues) => {
   const [errors, setErrors] = useState(initialErrorValues);
   const [displayData, setDisplayData] = useState(false);
- 
+
+
   // Helper function errorHandling holds the testing logic
   // takes in a name and value of the input
   // returns an error message string
@@ -60,14 +61,16 @@ export const useValidation = (initialErrorValues) => {
       */
 
       let hasErrors = false;
+      console.log("newerrors", newErrors)
 
       Object.values(newErrors).forEach(value => {
+      
         if (value !== "") { //aka there is no error
           hasErrors = true;
         }
       });
 
-      setDisplayData(hasErrors);
+      setDisplayData(!hasErrors);
 
       return hasErrors; // will return a boolean if there are errors or not
 
