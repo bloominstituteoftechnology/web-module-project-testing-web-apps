@@ -2,7 +2,7 @@ import { useLocalStorage } from "./useLocalStorage";
 
 export const useForm = (initialValues) => {
   const [values, setValues] = useLocalStorage('formValues', initialValues);
-  console.log("useForm fires")
+  // console.log("useForm fires")
   const handleChange = e => {
     setValues({
       ...values,

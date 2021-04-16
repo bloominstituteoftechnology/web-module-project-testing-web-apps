@@ -65,7 +65,6 @@ const ContactForm = () => {
 
     // const hasErrors = (submitErrors.firstName === "" && submitErrors.lastName === "" && submitErrors.email === "" && submitErrors.message === "");
     // setDisplayData(hasErrors);
-      alert("submitted")
   };
 
   // const handleChange = (e) => {

@@ -35,3 +35,27 @@ query = chill = should return null = look for something NOT there
 
 eg. error should not be there
 
+
+const Logout = () => {
+  let history = useHistory();
+  const logout = () => {
+    alert("You have been logged out. Thank you for visiting");
+    localStorage.clear();
+    history.push("/");
+  };
+
+  <Link
+        to="/"
+        onClick={() => logout()}
+        style={{
+          margin: "5vh 0",
+          fontSize: "5vh",
+          backgroundColor: "#222",
+          color: "white",
+          textDecoration: "none",
+          border: ".05rem solid white",
+          padding: "2rem 3rem",
+          opacity: "",
+        }}
+      >
+
