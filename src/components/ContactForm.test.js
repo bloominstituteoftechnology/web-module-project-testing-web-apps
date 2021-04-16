@@ -1,15 +1,18 @@
 import React from 'react';
-import {render, screen, waitFor } from '@testing-library/react';
+import {getByText, render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import ContactForm from './ContactForm';
 
 test('renders without errors', ()=>{
-    
+    render(<ContactForm />)
 });
 
 test('renders the contact form header', ()=> {
-    
+    render(<ContactForm />)
+  const header = screen.getByText(/Contact Form/i)
+  expect(header).toBeInTheDocument();
+  expect(header).toBeTruthy();
 });
 
 test('renders ONE error message if user enters less then 5 characters into firstname.', async () => {
