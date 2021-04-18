@@ -24,9 +24,6 @@ const ContactForm = () => {
     if (fieldName === "firstName" && fieldValue.length < 5)
       return `${fieldName} must have at least 5 characters.`;
 
-    // if (fieldName === "lastName" && fieldValue.length < 5)
-    //   return `${fieldName} must have at least 5 characters.`;
-
     const emailRegex = /(.*)@(.*)\.(.+)/g;
     if (fieldName === "email" && !fieldValue.match(emailRegex))
       return `${fieldName} must be a valid email address.`;
