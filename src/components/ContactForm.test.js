@@ -5,11 +5,18 @@ import userEvent from '@testing-library/user-event';
 import ContactForm from './ContactForm';
 
 test('renders without errors', ()=>{
-    
+    render(<ContactForm/>);
 });
 
 test('renders the contact form header', ()=> {
-    
+    const {getByText} = render(<ContactForm />);
+    const header = getByText(/Contact Form/i);
+
+    expect(header).toBeInTheDocument();
+    expect(header).toBeTruthy();
+    expect(header).not.toBeFalsy();
+    expect(header).toBeVisible();
+    expect(header).toHaveTextContent("Contact Form");
 });
 
 test('renders ONE error message if user enters less then 5 characters into firstname.', async () => {
@@ -33,9 +40,37 @@ test('renders "lastName is a required field" if an last name is not entered and 
 });
 
 test('renders all firstName, lastName and email text when submitted. Does NOT render message if message is not submitted.', async () => {
+    render (<ContactForm/>);
+    
+    const firstNameInput = screen.getByPlaceholderText(/Edd/i);
+    userEvent.type(firstNameInput, "Angela");
+
+    const lastNameInput= screen.getByPlaceholderText(/Burke/i);
+    userEvent.type(lastNameInput, "Borgtron");
+
+    const emailInput= screen.getByPlaceholderText(/bluebill1049@hotmail.com/i);
+    userEvent.type(emailInput, "foo@bar.com");
+
+   
+
+    const button = screen.getByRole("button");
+    userEvent.click(button);
+
+    
+
+
     
 });
 
 test('renders all fields text when all fields are submitted.', async () => {
+    render (<ContactForm/>);
+
+    const messageText = "Cool guys don't look at explosions";
+    const messageInput = screen.getByLabelText(/message/i);
+    userEvent.type(messageInput, messageText);
     
+    const messageDisplay = screen.queryByText(messageText);
+    console.log(messageDisplay);
+
+    expect(messageDisplay).toBeInTheDocument();
 });
