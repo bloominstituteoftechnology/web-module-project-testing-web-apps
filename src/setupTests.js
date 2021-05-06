@@ -4,3 +4,9 @@
 // learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom/extend-expect';
 import 'mutationobserver-shim';
+import { scryRenderedComponentsWithType } from 'react-dom/test-utils';
+
+
+// //Async Way
+// const contactDisplay = away contactRenderedComponentsWithType.findByText(contactSelected);
+// expect(contactDispkay).toBeInTheDocument();
