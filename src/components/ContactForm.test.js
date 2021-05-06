@@ -40,6 +40,15 @@ test('renders ONE error message if user enters less then 5 characters into first
 test('renders THREE error messages if user enters no values into any fields.', async () => {
     render(<ContactForm />);
 
+    const firstNameField = screen.getByLabelText(/first name/i);
+    expect(firstNameField).toBeEmpty()
+
+    const lastNameField = screen.getByLabelText(/last name/i);
+    expect(lastNameField).toBeEmpty()
+
+    const emailField = screen.getByLabelText(/email/i);
+    expect(emailField).toBeEmpty()
+
     const submitButton = screen.getByRole('button');
     userEvent.click(submitButton);
 
