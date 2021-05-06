@@ -66,10 +66,23 @@ test('renders "email must be a valid email address" if an invalid email is enter
   userEvent.type(emailInput, "kaseem@");
 
   const err = await screen.findByTestId(/error/i);
-  expect(err).toBeInTheDocument();
+  expect(err).toHaveTextContent("email must be a valid email address");
 });
 
-test('renders "lastName is a required field" if an last name is not entered and the submit button is clicked', async () => {});
+test('renders "lastName is a required field" if an last name is not entered and the submit button is clicked', async () => {
+  render(<ContactForm />);
+
+  const firstNameInput = screen.getByLabelText(/first name/i);
+  const emailInput = screen.getByLabelText(/email/i);
+  const submitButton = screen.getByRole("button");
+
+  userEvent.type(firstNameInput, "kaseem");
+  userEvent.type(email, "kaseem@gmail.com");
+  userEvent.click(submitButton);
+
+  const err = await screen.findByTestId(/error/i);
+  expect(err).toHaveTextContent("lastName is a required field");
+});
 
 test("renders all firstName, lastName and email text when submitted. Does NOT render message if message is not submitted.", async () => {});
 
