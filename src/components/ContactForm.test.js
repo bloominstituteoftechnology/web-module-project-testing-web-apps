@@ -5,14 +5,26 @@ import userEvent from '@testing-library/user-event';
 import ContactForm from './ContactForm';
 
 test('renders without errors', ()=>{
-    
+    render (<ContactForm />);
 });
 
 test('renders the contact form header', ()=> {
-    
+    render (<ContactForm />);
+
+    const headerH1 = screen.queryByText(/contact form/i);
+
+    expect(headerH1).toBeInTheDocument();
+    expect(headerH1).toBeTruthy();
+    expect(headerH1).toHaveTextContent(/contact form/i);
 });
 
 test('renders ONE error message if user enters less then 5 characters into firstname.', async () => {
+    render (<ContactForm />);
+
+    const firstnameInput = screen.getByLabelText(/first name/i);
+    userEvent.type(firstnameInput, 'oooo');
+
+    
     
 });
 
