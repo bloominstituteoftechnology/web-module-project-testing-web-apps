@@ -3,6 +3,7 @@ import {render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import ContactForm from './ContactForm';
+import App from '../App';
 
 test('renders without errors', ()=>{
     render(<ContactForm/>);
@@ -179,4 +180,14 @@ test('renders all fields text when all fields are submitted.', async () => {
         expect(lastNameDisplay).toBeInTheDocument();
         expect(firstNameDisplay).toBeInTheDocument();
     });
+});  
+
+
+test('renders Lambda header, with text "Lambda Integration Testing Challenge"', ()=>{
+    const {getByText} = render(<App/>);
+
+    const header = getByText(/Lambda Integration Testing Challenge/i);
+
+    expect(header).toBeInTheDocument();
+    expect(header).toHaveTextContent("Lambda Integration Testing Challenge");
 });
