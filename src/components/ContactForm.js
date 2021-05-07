@@ -30,7 +30,7 @@ const ContactForm = () => {
 
     if (fieldName !== "message" && fieldValue === "")
       return `${fieldName} is a required field.`;
-    
+
     return "";
   }
 
@@ -42,12 +42,12 @@ const ContactForm = () => {
     Object.keys(errors).forEach(field => {
       submitErrors[field] = errorHandling(field, form[field])
     });
-    
+
     setErrors(submitErrors);
-    
+
     const hasErrors = (submitErrors.firstName === "" && submitErrors.lastName === "" && submitErrors.email === "" && submitErrors.message === "");
     setDisplayData(hasErrors);
-      
+
   };
 
   const handleChange = (e) => {
@@ -98,10 +98,10 @@ const ContactForm = () => {
 
         <div>
           <label htmlFor="email">Email*</label>
-          <input 
+          <input
             onChange={handleChange}
             id="email"
-            name="email" 
+            name="email"
             value={form.email}
             placeholder="bluebill1049@hotmail.com"
           />
