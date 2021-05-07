@@ -153,6 +153,10 @@ test('renders all firstName, lastName and email text when submitted. Does NOT re
 
         const resultEmail = screen.queryByText(email);
         expect(resultEmail).toBeInTheDocument();
+
+        const resultMessage = screen.queryByTestId('messageDisplay');
+        console.log(resultMessage)
+        expect(resultMessage).toBeNull();
         
         
     })
