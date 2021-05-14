@@ -86,9 +86,56 @@ test('renders "lastName is a required field" if an last name is not entered and 
 });
 
 test('renders all firstName, lastName and email text when submitted. Does NOT render message if message is not submitted.', async () => {
+    render(<ContactForm />)
 
+    const firstName = screen.getByPlaceholderText('Edd');
+    userEvent.type(firstName, 'First');
+
+    const lastName = screen.getByPlaceholderText('Burke');
+    userEvent.type(lastName, 'Last');
+
+    const email = screen.getByPlaceholderText('bluebill1049@hotmail.com');
+    userEvent.type(email, 'test@test.com');
+
+    const button = screen.getByRole('button', { type: 'submit' });
+    button.click();
+
+    const firstNameDisplay = screen.queryByTestId('firstnameDisplay');
+    const lastNameDisplay = screen.queryByTestId('lastnameDisplay');
+    const emailDisplay = screen.queryByTestId('emailDisplay');
+    const messageDisplay = screen.queryByTestId('messageDisplay');
+
+    expect(firstNameDisplay).toBeInTheDocument();
+    expect(lastNameDisplay).toBeInTheDocument();
+    expect(emailDisplay).toBeInTheDocument();
+    expect(messageDisplay).not.toBeInTheDocument();
 });
 
 test('renders all fields text when all fields are submitted.', async () => {
+    render(<ContactForm />)
 
+    const firstName = screen.getByPlaceholderText('Edd');
+    userEvent.type(firstName, 'First');
+
+    const lastName = screen.getByPlaceholderText('Burke');
+    userEvent.type(lastName, 'Last');
+
+    const email = screen.getByPlaceholderText('bluebill1049@hotmail.com');
+    userEvent.type(email, 'test@test.com');
+
+    const message = screen.getByLabelText('Message');
+    userEvent.type(message, 'Test Message');
+
+    const button = screen.getByRole('button', { type: 'submit' });
+    button.click();
+
+    const firstNameDisplay = screen.queryByTestId('firstnameDisplay');
+    const lastNameDisplay = screen.queryByTestId('lastnameDisplay');
+    const emailDisplay = screen.queryByTestId('emailDisplay');
+    const messageDisplay = screen.queryByTestId('messageDisplay');
+
+    expect(firstNameDisplay).toBeInTheDocument();
+    expect(lastNameDisplay).toBeInTheDocument();
+    expect(emailDisplay).toBeInTheDocument();
+    expect(messageDisplay).toBeInTheDocument();
 });
