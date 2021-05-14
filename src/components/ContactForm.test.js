@@ -1,11 +1,11 @@
 import React from 'react';
-import {render, screen, waitFor } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 
 import ContactForm from './ContactForm';
 
 test('renders without errors', ()=>{
-    
+    render(<ContactForm />)
 });
 
 test('renders the contact form header', ()=> {
