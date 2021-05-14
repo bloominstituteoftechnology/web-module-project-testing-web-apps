@@ -18,12 +18,27 @@ test("renders the contact form header", () => {
 test("renders ONE error message if user enters less then 5 characters into firstname.", async () => {
   render(<ContactForm />);
   const firstName = screen.getByLabelText("First Name*");
-  userEvent.type(firstName, "craig");
+  userEvent.type(firstName, "crai");
   const errorMsg = screen.getAllByText(/error/i);
   expect(errorMsg).toHaveLength(1);
 });
 
-test("renders THREE error messages if user enters no values into any fields.", async () => {});
+test("renders THREE error messages if user enters no values into any fields.", async () => {
+  render(<ContactForm />);
+
+  const lastName = screen.getByLabelText("Last Name*");
+  userEvent.type(lastName, "");
+
+  const email = screen.getByLabelText("Email*");
+  userEvent.type(email, "");
+
+  const message = screen.getByLabelText("message");
+  userEvent.type(message, "");
+
+  const errorMsg = screen.getAllByText(/error/i);
+  expect(errorMsg).toHaveLength(1);
+
+});
 
 test("renders ONE error message if user enters a valid first name and last name but no email.", async () => {});
 
