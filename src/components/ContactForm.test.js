@@ -34,9 +34,6 @@ test('renders THREE error messages if user enters no values into any fields.', a
     const button = screen.getByRole("button");
     userEvent.click(button);
 
-    // await waitFor(() => {
-    //     const errors = screen.
-    // });
 });
 
 test('renders ONE error message if user enters a valid first name and last name but no email.', async () => {
@@ -71,7 +68,7 @@ test('renders "lastName is a required field" if an last name is not entered and 
     userEvent.type(lastNameError, "");
     const button = screen.getByRole("button");
     userEvent.click(button);
-    expect(screen.getByTestId("error")).toHaveTextContent('lastName is a required field');
+    expect(screen.getByText(/Error: lastName is a required field/i)).toHaveTextContent('lastName is a required field');
 });
 
 test('renders all firstName, lastName and email text when submitted. Does NOT render message if message is not submitted.', async () => {
