@@ -19,7 +19,7 @@ As a developer, you will be writing tests for every component. As we've learned,
 
 ![Contact Example](project-goals.gif)
 
-***Make sure to complete your tasks one at a time and complete test each task before proceding forward.***
+***Make sure to complete your tasks one at a time and complete test each task before proceeding forward.***
 
 ## Instructions
 ### Task 1: Project Set Up
