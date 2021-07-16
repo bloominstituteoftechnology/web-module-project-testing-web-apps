@@ -34,7 +34,8 @@ test('renders ONE error message if user enters less then 5 characters into first
 
 test('renders THREE error messages if user enters no values into any fields.', async () => {
     render(<ContactForm />)
-    const submit = document.querySelector("input[type='submit']")
+    //const submit = document.querySelector("input[type='submit']")
+    const submit = screen.getByRole('button')
 
     userEvent.click(submit);
 
@@ -46,7 +47,7 @@ test('renders ONE error message if user enters a valid first name and last name 
     render(<ContactForm />)
     const fNameInput = screen.getByLabelText('First Name*');
     const lNameInput = screen.getByLabelText('Last Name*');
-    const submit = document.querySelector("input[type='submit']")
+    const submit = screen.getByRole('button')
 
     userEvent.type(fNameInput, 'Gogol');
     userEvent.type(lNameInput, 'Bordello');
@@ -71,7 +72,7 @@ test('renders "lastName is a required field" if an last name is not entered and 
     render(<ContactForm />)
     const fNameInput = screen.getByLabelText('First Name*');
     const emailInput = screen.getByLabelText('Email*');
-    const submit = document.querySelector("input[type='submit']")
+    const submit = screen.getByRole('button')
     
     userEvent.type(fNameInput, 'Gogol');
     userEvent.type(emailInput, 'GypsyPunx@gogolBordello.com');
@@ -87,18 +88,18 @@ test('renders all firstName, lastName and email text when submitted. Does NOT re
     const fNameInput = screen.getByLabelText('First Name*');
     const lNameInput = screen.getByLabelText('Last Name*');
     const emailInput = screen.getByLabelText('Email*');
-    const submit = document.querySelector("input[type='submit']")
+    const submit = screen.getByRole('button')
 
     userEvent.type(fNameInput, 'Gogol');
     userEvent.type(lNameInput, 'Bordello');
     userEvent.type(emailInput, 'GypsyPunx@gogolBordello.com');
     userEvent.click(submit);
 
-    const errorMessage = document.querySelector("p[data-testid='error']");
-    const firstName = document.querySelector("p[data-testid='firstnameDisplay']");
-    const lastName = document.querySelector("p[data-testid='lastnameDisplay']");
-    const email = document.querySelector("p[data-testid='emailDisplay']");
-    const message = document.querySelector("p[data-testid='messageDisplay']");
+    const errorMessage = screen.queryByTestId("error");
+    const firstName = screen.getByTestId('firstnameDisplay');
+    const lastName = screen.getByTestId('lastnameDisplay');
+    const email = screen.getByTestId('emailDisplay');
+    const message = screen.queryByTestId('messageDisplay');
     expect(errorMessage).not.toBeInTheDocument();
     expect(firstName).toHaveTextContent('Gogol');
     expect(lastName).toHaveTextContent('Bordello');
@@ -120,11 +121,11 @@ test('renders all fields text when all fields are submitted.', async () => {
     userEvent.type(messageInput, '<3 GYPSY PUNK ROCK');
     userEvent.click(submit);
 
-    const errorMessage = document.querySelector("p[data-testid='error']");
-    const firstName = document.querySelector("p[data-testid='firstnameDisplay']");
-    const lastName = document.querySelector("p[data-testid='lastnameDisplay']");
-    const email = document.querySelector("p[data-testid='emailDisplay']");
-    const message = document.querySelector("p[data-testid='messageDisplay']");
+    const errorMessage = screen.queryByTestId("error");
+    const firstName = screen.getByTestId('firstnameDisplay');
+    const lastName = screen.getByTestId('lastnameDisplay');
+    const email = screen.getByTestId('emailDisplay');
+    const message = screen.getByTestId('messageDisplay');
     expect(errorMessage).not.toBeInTheDocument();
     expect(firstName).toHaveTextContent('Gogol');
     expect(lastName).toHaveTextContent('Bordello');
