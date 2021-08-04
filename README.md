@@ -2,6 +2,19 @@
 
 This module explored the basics of the react-testing library and ideas behind the integration testing methodology. In this project you will practice how to build tests that follow the arrange-act-assert model, different methods of querying for DOM elements in a test, the use of different expect types and using async/await to test for changes in state.
 
+- [Integration Testing React Module Project : Contact Form - Testing](#integration-testing-react-module-project--contact-form---testing)
+  - [Testing Web Applications](#testing-web-applications)
+  - [Objectives](#objectives)
+  - [Introduction](#introduction)
+  - [Instructions](#instructions)
+    - [Task 1: Project Set Up](#task-1-project-set-up)
+    - [Task 2: Project Requirements](#task-2-project-requirements)
+      - [Test Brainstorming](#test-brainstorming)
+      - [Complete a case that tests if:](#complete-a-case-that-tests-if)
+  - [Stretch goals](#stretch-goals)
+  - [Rick Mansfield's PUll Request Link](#rick-mansfields-pull-request-link)
+  - [Resources](#resources)
+
 ## Testing Web Applications
 
 ## Objectives
@@ -56,3 +69,13 @@ As a developer, you will be writing tests for every component. As we've learned,
 - Look at your test cases in Understanding-questions and see if there are any that you have not completed.
 - From the this list or from your own mind, add in at least one more new testcase.
 - There is alot of state management within our component in this project! See if you can separate the form and error validation code into their own hooks.
+
+
+## Rick Mansfield's PUll Request Link
+
+- [Link for Convenience](https://github.com/LambdaSchool/web-module-project-testing-web-apps/pull/71)
+
+## Resources 
+  - [React Testing Library Cheatsheet](https://testing-library.com/docs/react-testing-library/cheatsheet/)
+  - [Regex](https://regexr.com)
+  - [jest](https://jestjs.io/docs/en/expect.html)
