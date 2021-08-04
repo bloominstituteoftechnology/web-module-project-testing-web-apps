@@ -13,6 +13,7 @@ This module explored the basics of the react-testing library and ideas behind th
       - [Complete a case that tests if:](#complete-a-case-that-tests-if)
   - [Stretch goals](#stretch-goals)
   - [Rick Mansfield's PUll Request Link](#rick-mansfields-pull-request-link)
+  - [Resources](#resources)
 
 ## Testing Web Applications
 
@@ -73,3 +74,7 @@ As a developer, you will be writing tests for every component. As we've learned,
 ## Rick Mansfield's PUll Request Link
 
 - [Link for Convenience](https://github.com/LambdaSchool/web-module-project-testing-web-apps/pull/71)
+
+
+## Resources 
+  - [React Testing Library Cheatsheet](https://testing-library.com/docs/react-testing-library/cheatsheet/)
