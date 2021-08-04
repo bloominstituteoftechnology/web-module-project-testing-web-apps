@@ -4,11 +4,20 @@ import userEvent from '@testing-library/user-event';
 
 import ContactForm from './ContactForm';
 
-test('renders without errors', ()=>{
-    
+test("does the test 1", ()=>{
+    // throw new Error("This is an error")
+    console.log('doing a sanity test 1');
+});
+
+
+it('renders without errors', ()=>{
+    render(<ContactForm />);
 });
 
 test('renders the contact form header', ()=> {
+    render(<ContactForm />);
+	const header = screen.queryByText(/contact form/i);
+	expect(header).toBeVisible();
     
 });
 
