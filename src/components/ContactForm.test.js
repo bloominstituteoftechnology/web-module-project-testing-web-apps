@@ -130,6 +130,29 @@ test('8 renders all firstName, lastName and email text when submitted. Does NOT 
     expect(lastNameDisplay).toBeVisible();
     expect(emailDisplay).toBeVisible();
 
-test('renders all fields text when all fields are submitted.', async () => {
+    test('9 renders all fields text when all fields are submitted.', async () => {
+        render(<ContactForm />);
+        //Arranged need good first, last, email, scan for each field
+        const firstName = 'Wiliam';
+        const lastName = 'Mansfield';
+        const email = 'RicksMyCodeGuy@gmail.com';
     
-});
+        const firstNameInput = screen.getByLabelText(/first name/i);
+        const lastNameInput = screen.getByLabelText(/last name/i);
+        const emailInput = screen.getByLabelText(/email/i);
+        
+        //ACT - user enters each as arranged above and uses submit button
+        userEvent.type(firstNameInput, firstName);
+        userEvent.type(lastNameInput, lastName);
+        userEvent.type(emailInput, email);
+    
+        const button = screen.getByRole('button');
+        userEvent.click(button);
+    
+        //Assert - must utilize a delay method | Per Warrens video the "Await" vs the "Promise" is shorter. I've included the notes from class an an extra file called notes.md attached next to the readme.md file.  
+        const firstNameDisplay = await screen.findByTestId('firstnameDisplay');
+    
+        expect(firstNameDisplay).toBeVisible();
+        expect(screen.getByText(/mansfield/i)).toBeTruthy();
+        screen.getByText(/mansfield/i);
+    });
