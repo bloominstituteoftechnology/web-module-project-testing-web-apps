@@ -98,9 +98,37 @@ test('7 renders "lastName is a required field" if an last name is not entered an
     
 });
 
-test('renders all firstName, lastName and email text when submitted. Does NOT render message if message is not submitted.', async () => {
+test('8 renders all firstName, lastName and email text when submitted. Does NOT render message if message is not submitted.', async () => {
     
-});
+    render(<ContactForm />);
+    //Arrange Need good first, last and email and screen for each field
+    const firstName = 'William';
+    const lastName = 'Mansfield';
+    const email = 'RicksMyCodeGuy@gmail.com';
+
+    const firstNameInput = screen.getByLabelText(/first name/i);
+    const lastNameInput = screen.getByLabelText(/Last Name/i);
+    const emailInput = screen.getByLabelText(/email/i);
+    //Act user inputs each and clicks submit button no message until after clicked
+    userEvent.type(firstNameInput, firstName);
+    userEvent.type(lastNameInput, lastName);
+    userEvent.type(emailInput, email);
+
+    const messageDiv = screen.queryByText(/you submitted/i);
+    expect(messageDiv).toBeFalsy();//starts falsy
+
+    const button = screen.getByRole('button');
+    userEvent.click(button);
+    //Assert - should get affimative You Submitted: card back with all details rendered back
+    // expect(messageDiv).toBeTruthy();//ends truthy couldn't get this to work. seeing help
+
+    const firstNameDisplay = screen.queryByTestId('firstnameDisplay');
+    const lastNameDisplay = screen.queryByTestId('lastnameDisplay');
+    const emailDisplay = screen.queryByTestId('emailDisplay');
+
+    expect(firstNameDisplay).toBeVisible();
+    expect(lastNameDisplay).toBeVisible();
+    expect(emailDisplay).toBeVisible();
 
 test('renders all fields text when all fields are submitted.', async () => {
     
