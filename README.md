@@ -72,4 +72,4 @@ As a developer, you will be writing tests for every component. As we've learned,
 
 ## Rick Mansfield's PUll Request Link
 
-- [Link for Convenience]()
+- [Link for Convenience](https://github.com/LambdaSchool/web-module-project-testing-web-apps/pull/71)
