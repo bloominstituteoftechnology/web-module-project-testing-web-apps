@@ -14,12 +14,20 @@ it('renders without errors', ()=>{
     render(<ContactForm />);
 });
 
-test('renders the contact form header', ()=> {
+test('2 renders the contact form header', ()=> {
     render(<ContactForm />);
 	const header = screen.queryByText(/contact form/i);
-	expect(header).toBeVisible();
-    
+    console.log(header);
+	expect(header).toBeInTheDocument();//can use either
+    expect(header).toBeVisible();//can use any of these
+    expect(header).toHaveTextContent(/contact form/i);
+    expect(header).toBeTruthy();
+    expect(header).not.toBeFalsy();
+//another example to just have plenty of options
+    const h1 = screen.queryByTestId('testh1');
+    expect(h1).toBeInTheDocument();//can also tag with an id and use any of these 
 });
+
 
 test('renders ONE error message if user enters less then 5 characters into firstname.', async () => {
     
