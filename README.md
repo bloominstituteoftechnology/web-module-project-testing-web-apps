@@ -75,6 +75,7 @@ As a developer, you will be writing tests for every component. As we've learned,
 
 - [Link for Convenience](https://github.com/LambdaSchool/web-module-project-testing-web-apps/pull/71)
 
-
 ## Resources 
   - [React Testing Library Cheatsheet](https://testing-library.com/docs/react-testing-library/cheatsheet/)
+  - [Regex](https://regexr.com)
+  - [jest](https://jestjs.io/docs/en/expect.html)
