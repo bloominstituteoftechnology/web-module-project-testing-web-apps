@@ -86,7 +86,15 @@ test('6 renders "email must be a valid email address" if an invalid email is ent
 
 });
 
-test('renders "lastName is a required field" if an last name is not entered and the submit button is clicked', async () => {
+test('7 renders "lastName is a required field" if an last name is not entered and the submit button is clicked', async () => {
+    render(<ContactForm />);
+    //ARRANGE - The message prints upon using submit without doing anything So We only need to screen for the button 
+    const submitButton = screen.getByRole('button');
+    //ACT - user then clicks the button
+    userEvent.click(submitButton);
+    //ASSERT - error message for last name is expected 
+    const errorMessage = screen.queryByText(/lastName is a required field/i);
+	expect(errorMessage).toBeVisible();
     
 });
 
