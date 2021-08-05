@@ -1,16 +1,38 @@
+/**
+ * Tom Bielawski
+ * Lambda School WEB45
+ * 3.1.4 Testing
+ * 8/5/2021
+ */
+
+//Imports
 import React from 'react';
 import {render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-
 import ContactForm from './ContactForm';
 
-test('renders without errors', ()=>{
-    
+//Sanity test
+test('renders without errors', ()=>
+{
+    //Ensure the form renders
+    render(<ContactForm/>);
 });
 
-test('renders the contact form header', ()=> {
-    
+
+test('renders the contact form header', ()=> 
+{
+    //Arrange: Render the form
+    render(<ContactForm/>);
+    //Act: Declare header to hold the text
+    const header = screenGetByText(/contact form/i);
+    //Assert: determine if contents of "header" are in the doc
+    expect(header).toBeInTheDocument();
+    //Assert: determine if contents of "header" are in contact form
+    expect(header).toHaveTextContent("Contact Form");
+
+
 });
+
 
 test('renders ONE error message if user enters less then 5 characters into firstname.', async () => {
     
