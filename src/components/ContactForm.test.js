@@ -15,26 +15,27 @@ describe("the tests", () => {
     test('renders the contact form header', ()=> {
         const header = screen.getByText(/contact form/i)
         expect(header).toBeInTheDocument()
+        expect(header).toBeTruthy()
     });
     
-    test('renders ONE error message if user enters less then 5 characters into firstname.', () => {
-        const input = screen.getByPlaceholderText(/Edd/i)
+    test('renders ONE error message if user enters less then 5 characters into firstname.', async () => {
+        const input = screen.getByLabelText(/first name*/i)
         userEvent.type(input, "1234")
-        const errs = screen.getAllByTestId("error")
+        const errs = await screen.findAllByTestId("error")
         expect(errs.length).toBe(1)
     });
     
-    test('renders THREE error messages if user enters no values into any fields.', () => {
+    test('renders THREE error messages if user enters no values into any fields.', async () => {
         const submit = screen.getByRole(/submit/i) 
         userEvent.click(submit)
-        const errors = screen.getAllByTestId("error")
+        const errors = await screen.findAllByTestId("error")
         expect(errors.length).toBe(3)
     });
     
     test('renders ONE error message if user enters a valid first name and last name but no email.', async () => {
-        const firstName = screen.getByPlaceholderText(/Edd/i)
+        const firstName = screen.getByLabelText(/first name/i)
         userEvent.type(firstName, "FirstName")
-        const lastName = screen.getByPlaceholderText(/Burke/i)
+        const lastName = screen.getByLabelText(/last name/i)
         userEvent.type(lastName, "LastName")
         const submit = screen.getByRole(/submit/i) 
         userEvent.click(submit)
@@ -43,7 +44,7 @@ describe("the tests", () => {
     });
     
     test('renders "email must be a valid email address" if an invalid email is entered', async () => {
-        const emailInput = screen.getByPlaceholderText(/bluebill1049@hotmail.com/i)
+        const emailInput = screen.getByLabelText(/email/i)
         userEvent.type(emailInput, "asdfghjkl")
         const err = screen.getByText(/email must be a valid email address/i)
         expect(err).toBeInTheDocument();
@@ -51,9 +52,9 @@ describe("the tests", () => {
     
     test('renders "lastName is a required field" if an last name is not entered and the submit button is clicked', async () => {
         
-        const emailInput = screen.getByPlaceholderText(/bluebill1049@hotmail.com/i)
+        const emailInput = screen.getByLabelText(/email/i)
         userEvent.type(emailInput, "j@y.com")
-        const firstName = screen.getByPlaceholderText(/Edd/i)
+        const firstName = screen.getByLabelText(/first name/i)
         userEvent.type(firstName, "firstName")
         const submit = screen.getByRole(/submit/i) 
         userEvent.click(submit)
@@ -107,7 +108,7 @@ describe("the tests", () => {
         const lastNameDisplay = screen.getByTestId("lastnameDisplay")
         const emailDisplay = screen.getByTestId("emailDisplay")
         const msgDisplay = screen.getByTestId("messageDisplay")
-        
+
         expect(nameDisplay).toBeVisible();
         expect(lastNameDisplay).toBeVisible();
         expect(emailDisplay).toBeVisible();
