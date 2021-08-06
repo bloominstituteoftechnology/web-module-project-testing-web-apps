@@ -74,9 +74,8 @@ test('renders ONE error message if user enters a valid first name and last name 
     const fNameInput = screen.getByLabelText(/first name*/i)
     userEvent.type(fNameInput, name)
 
-    expect(fNameInput).toBeInTheDocument()
-    expect(fNameInput).toBeTruthy()
-    expect(fNameInput).toHaveTextContent(/bennie/i)
+    expect(fNameInput)
+    expect(fNameInput).toHaveValue('Bennie')
         console.log(name)
         console.log(fNameInput)
 
