@@ -2,7 +2,7 @@ import React from 'react';
 
 const DisplayComponent = (props) => {
     const { firstName, lastName, email, message } = props.form;
-
+    console.log(firstName)
     return(<div id="displayContainer">
         <h1>You Submitted:</h1>
         
