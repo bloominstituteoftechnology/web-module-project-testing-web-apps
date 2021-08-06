@@ -38,6 +38,12 @@ As a developer, you will be writing tests for every component. As we've learned,
 #### Test Brainstorming
 * [ ] Run and play around with the form interface.
 * [ ] Write out a list of possible testcases for this application within Understanding-questions.md.
+-user can select each input and input value in the field
+-user can only submit form with required fields full
+-if user hovers over submit the styles change
+-submitted information matches the values in the inputs
+-title of the header is Contact Form
+-Each input field is displaying the correct label
 
 #### Complete a case that tests if:
 * [ ] the component renders the contact form component without errors.
