@@ -5,11 +5,16 @@ import userEvent from '@testing-library/user-event';
 import ContactForm from './ContactForm';
 
 test('renders without errors', ()=>{
-    
+    render(<ContactForm />);
 });
 
 test('renders the contact form header', ()=> {
-    
+    // Arrange
+    render(<ContactForm />);
+    // Act
+    const headerText = screen.getByText(/Lambda Integration Testing Challenge/i);
+    // Assert
+    expect(headerText);
 });
 
 test('renders ONE error message if user enters less then 5 characters into firstname.', async () => {
