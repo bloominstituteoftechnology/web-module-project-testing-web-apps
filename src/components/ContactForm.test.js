@@ -195,12 +195,36 @@ const button = screen.getByRole("button");
 userEvent.click(button);
 // ??? Need help understanding what's going on here
 const messageDisplay = screen.queryByTestId("messageDisplay");
-screen.debug();
+// screen.debug();
 // Assert
 expect(messageDisplay).toBeNull();
 
  });
 
-// test('renders all fields text when all fields are submitted.', async () => {
-    
-// });
+test('renders all fields text when all fields are submitted.', async () => {
+// Arrange
+render(<ContactForm />);
+
+// Act
+const firstName = screen.getByLabelText(/First Name*/i);
+userEvent.type(firstName, "Alieze");
+
+const lastName = screen.getByLabelText(/Last Name*/i);
+userEvent.type(lastName, "Ali");
+
+const email = screen.getByLabelText(/Email*/i);
+userEvent.type(email, "keanu@gmail.com");
+
+const message = screen.getByLabelText(/Message/i);
+userEvent.type(message, "");
+
+const button = screen.getByRole("button");
+userEvent.click(button);
+
+// Act
+expect(firstName).toBeInTheDocument();
+expect(lastName).toBeInTheDocument();
+expect(email).toBeInTheDocument();
+expect(message).toBeInTheDocument();
+
+ });
