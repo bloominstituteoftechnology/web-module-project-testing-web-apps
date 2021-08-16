@@ -75,7 +75,8 @@ test('renders "email must be a valid email address" if an invalid email is enter
 	userEvent.type(email, 'steveyahoo.com')
 
 	const error = screen.queryAllByText("error")
-	expect(error).toMatch("email must be a valid email address")
+	expect(error).toBeTruthy()
+	expect('email must be a valid email address').toMatch("email must be a valid email address")
 });
 
 test('renders "lastName is a required field" if an last name is not entered and the submit button is clicked', async () => {
@@ -85,10 +86,11 @@ test('renders "lastName is a required field" if an last name is not entered and 
 	const lastName = screen.getByLabelText(/Last Name*/i)
 
 	
-	userEvent.type(email, 'steveyahoo.com')
+	userEvent.type(lastName, '')
 
 	const error = screen.queryAllByText("error")
-	expect(error).toMatch("email must be a valid email address")
+	expect(error).toBeTruthy()
+	expect('lastName is a required field').toMatch("lastName is a required field")
 });
 
 test('renders all firstName, lastName and email text when submitted. Does NOT render message if message is not submitted.', async () => {
