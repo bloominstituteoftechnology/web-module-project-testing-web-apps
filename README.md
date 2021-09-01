@@ -2,6 +2,17 @@
 
 This module explored the basics of the react-testing library and ideas behind the integration testing methodology. In this project you will practice how to build tests that follow the arrange-act-assert model, different methods of querying for DOM elements in a test, the use of different expect types and using async/await to test for changes in state.
 
+- [Integration Testing React Module Project : Contact Form - Testing](#integration-testing-react-module-project--contact-form---testing)
+  - [Testing Web Applications](#testing-web-applications)
+  - [Objectives](#objectives)
+  - [Introduction](#introduction)
+  - [Instructions](#instructions)
+    - [Task 1: Project Set Up](#task-1-project-set-up)
+    - [Task 2: Project Requirements](#task-2-project-requirements)
+      - [Test Brainstorming](#test-brainstorming)
+      - [Complete a case that tests if:](#complete-a-case-that-tests-if)
+  - [Stretch goals](#stretch-goals)
+
 ## Testing Web Applications
 
 ## Objectives
