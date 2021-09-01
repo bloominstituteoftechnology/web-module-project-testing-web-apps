@@ -29,16 +29,26 @@ test('3 renders ONE error message if user enters less then 5 characters into fir
     const firstName = "Ric";
     const firstNameInput = screen.queryByLabelText(/first Name/i);
     userEvent.type(firstNameInput, firstName);//find filed then fill it in
-    const errorMessage = screen.queryAllByText(/error/i)
-    // const errorMessage = screen.queryByTestId('error');
-    expect(errorMessage).toHaveLength(1);
-    expect(errorMessage).toBeTruthy();
+    
+    const errorMessageA = screen.queryAllByText(/error/i); //
+    expect(errorMessageA).toHaveLength(1);
+    expect(errorMessageA).toBeTruthy();
+    //Alternative method
+    const errorMessageB = screen.queryByTestId('error');
+    expect(errorMessageB).toBeInTheDocument();
+    expect(errorMessageB).toBeTruthy();
     
 });
 
 test('4 renders THREE error messages if user enters no values into any fields.', async () => {
     render(<ContactForm />);
-    
+    const submitButton = screen.getByRole('button');
+    userEvent.click(submitButton);
+    const errorMessagesInDOMA = screen.queryAllByTestId(/error/i);
+    expect(errorMessagesInDOMA).toHaveLength(3);
+    //alternative
+    const errorMessagesInDOMB = screen.queryByText(/Error: firstName must have at least 5 characters/i);
+    expect(errorMessagesInDOMB).toBeInTheDocument();
 });
 
 test('5 renders ONE error message if user enters a valid first name and last name but no email.', async () => {
