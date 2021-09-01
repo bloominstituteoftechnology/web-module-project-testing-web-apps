@@ -4,7 +4,9 @@ import userEvent from '@testing-library/user-event';
 
 import ContactForm from './ContactForm';
 
-test('renders without errors', ()=>{
+test('1 renders without errors', ()=>{
+    render(<ContactForm />);
+
     
 });
 
