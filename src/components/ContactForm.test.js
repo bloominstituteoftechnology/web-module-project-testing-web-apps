@@ -23,30 +23,45 @@ test('2 renders the contact form header', ()=> {
     expect(h1).toBeVisible();
 });
 
-test('renders ONE error message if user enters less then 5 characters into firstname.', async () => {
+test('3 renders ONE error message if user enters less then 5 characters into firstname.', async () => {
+    render(<ContactForm />);
+
+    const firstName = "Ric";
+    const firstNameInput = screen.queryByLabelText(/first Name/i);
+    userEvent.type(firstNameInput, firstName);//find filed then fill it in
+    const errorMessage = screen.queryAllByText(/error/i)
+    // const errorMessage = screen.queryByTestId('error');
+    expect(errorMessage).toHaveLength(1);
+    expect(errorMessage).toBeTruthy();
     
 });
 
-test('renders THREE error messages if user enters no values into any fields.', async () => {
+test('4 renders THREE error messages if user enters no values into any fields.', async () => {
+    render(<ContactForm />);
     
 });
 
-test('renders ONE error message if user enters a valid first name and last name but no email.', async () => {
+test('5 renders ONE error message if user enters a valid first name and last name but no email.', async () => {
+    render(<ContactForm />);
     
 });
 
-test('renders "email must be a valid email address" if an invalid email is entered', async () => {
+test('6 renders "email must be a valid email address" if an invalid email is entered', async () => {
+    
+    render(<ContactForm />);
+});
+
+test('7 renders "lastName is a required field" if an last name is not entered and the submit button is clicked', async () => {
+    render(<ContactForm />);
     
 });
 
-test('renders "lastName is a required field" if an last name is not entered and the submit button is clicked', async () => {
+test('8 renders all firstName, lastName and email text when submitted. Does NOT render message if message is not submitted.', async () => {
+    render(<ContactForm />);
     
 });
 
-test('renders all firstName, lastName and email text when submitted. Does NOT render message if message is not submitted.', async () => {
-    
-});
-
-test('renders all fields text when all fields are submitted.', async () => {
+test('9 renders all fields text when all fields are submitted.', async () => {
+    render(<ContactForm />);
     
 });
