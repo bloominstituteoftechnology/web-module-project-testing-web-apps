@@ -70,4 +70,4 @@ As a developer, you will be writing tests for every component. As we've learned,
 - There is alot of state management within our component in this project! See if you can separate the form and error validation code into their own hooks.
 
 ## Rick Mansfield's Pull Request link
-[link]()
+[link](https://github.com/LambdaSchool/web-module-project-testing-web-apps/pull/94)
