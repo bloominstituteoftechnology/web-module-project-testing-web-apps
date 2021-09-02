@@ -80,6 +80,7 @@ test('6 renders "email must be a valid email address" if an invalid email is ent
     userEvent.type(emailInput, email);
     const errorMessageA = screen.queryAllByText(/error/i);
     expect(errorMessageA).toHaveLength(1);
+    expect(errorMessageA).toBeTruthy();
     //alternatively
     const errorMessageB = screen.queryByText(/email must be a valid email address/i);
     expect(errorMessageB).toBeVisible();
