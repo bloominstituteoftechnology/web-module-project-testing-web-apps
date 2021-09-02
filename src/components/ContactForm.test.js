@@ -9,19 +9,40 @@ test('renders without errors', ()=>{
 });
 
 test('renders the contact form header', ()=> {
-  
+  //Arrange:
+  render(<ContactForm/>);
+  //Act:
+  const header = screen.queryByText(/contact form/i);
+  //Assert:
+  expect(header).toBeInTheDocument();
+  expect(header).toBeVisible();
+  expect(header).toBeTruthy();
+  expect(header).toHaveTextContent(/contact form/i)
 });
 
 test('renders ONE error message if user enters less then 5 characters into firstname.', async () => {
-    
+  //Arrange:
+  render(<ContactForm/>);
+  //Act:
+  const firstName = "Kal";
+  const firstNameInput = screen.queryByLabelText(/first Name/i);
+  userEvent.type(firstNameInput, firstName);
+  //Assert:
+  const nameTooShortError = screen.queryAllByText(/error/i);
+  expect(nameTooShortError).toHaveLength(1);
+  expect(nameTooShortError).toBeTruthy();
 });
 
 test('renders THREE error messages if user enters no values into any fields.', async () => {
-    
+  //Arrange:
+  //Act:
+  //Assert:
 });
 
 test('renders ONE error message if user enters a valid first name and last name but no email.', async () => {
-    
+  //Arrange:
+  //Act:
+  //Assert:
 });
 
 test('renders "email must be a valid email address" if an invalid email is entered', async () => {
