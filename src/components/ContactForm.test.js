@@ -121,7 +121,25 @@ test('renders all firstName, lastName and email text when submitted. Does NOT re
 
 test('renders all fields text when all fields are submitted.', async () => {
   //Arange:
-  
+  render(<ContactForm/>);
   //Act:
+  const firstNameInput = screen.getByLabelText(/first name/i);
+  const lastNameInput = screen.getByLabelText(/Last Name/i);
+  const emailInput = screen.getByLabelText(/email/i);
+  const messageInput = screen.getByLabelText(/message/i)
+
+  userEvent.type(firstNameInput, "Klove");
+  userEvent.type(lastNameInput, "Farlen");
+  userEvent.type(emailInput, "greg@greg.com");
+  userEvent.type(messageInput, "This is the message");
+
+  const submitButton = screen.getByRole("button");
+    userEvent.click(submitButton);
   //Assert:
+  const firstNameDisplay = await screen.findByTestId('firstnameDisplay');
+
+	expect(firstNameDisplay).toBeVisible();
+	expect(screen.getByText(/farlen/i)).toBeTruthy();
+	screen.getByText(/farlen/i);
+  // I wanted to do a more specific test on the text content within the Display container, but that's part of the display component, so I decided it was not within the sphere of what I was testing.
 });
