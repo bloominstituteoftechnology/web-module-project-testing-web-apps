@@ -5,7 +5,7 @@ This module explored the basics of the react-testing library and ideas behind th
 ## Testing Web Applications
 
 ## Objectives
-- opps 
+- 
 - explain what automated testing is and its importance
 - use react-testing-library for testing react components
 - use react-testing-library to test user interactions with userEvent

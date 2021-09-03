@@ -70,10 +70,10 @@ const ContactForm = () => {
 
   return (
     <div className="App">
-      <h1>Contact Form</h1>
+      <h1 data-testid="header">Contact Form</h1>
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="firstName">First Name*</label>
+          <label htmlFor="firstName" data-testid="error">First Name*</label>
           <input
             onChange={handleChange}
             name="firstName"
