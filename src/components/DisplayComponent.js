@@ -16,29 +16,86 @@ const DisplayComponent = (props) => {
 export default DisplayComponent;
   
   
+   
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
   
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
   
-    
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
   
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
   
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
   
-    
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
+
   
-  
-  
-    
-  
-  
-  
-    
-  
-  
-  
-    
-  
-  
-  
-    
-  
+ 
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
   
   
