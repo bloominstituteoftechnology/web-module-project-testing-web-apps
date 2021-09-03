@@ -113,6 +113,7 @@ test('renders all firstName, lastName and email text when submitted. Does NOT re
   const firstNameInput = screen.getByPlaceholderText(/edd/i);
   const lastNameInput = screen.getByPlaceholderText(/burke/i);
   const emailInput = screen.getByPlaceholderText(/bluebill1049@hotmail.com/i);
+  
   const submitBtn = screen.getByRole('button');
 
   userEvent.type(firstNameInput, 'Priscila');
@@ -129,10 +130,42 @@ test('renders all firstName, lastName and email text when submitted. Does NOT re
 
     const emailInput = screen.queryByText('test@test.com');
     expect(emailInput).toBeInTheDocument();
+
+    const message = screen.queryByTestId('messageDisplay');
+    expect (message).not.toBeInTheDocument();
+
   });
     
 });
 
 test('renders all fields text when all fields are submitted.', async () => {
+  // render(<ContactForm/>);
+  // const firstNameInput = screen.getByPlaceholderText(/edd/i);
+  // const lastNameInput = screen.getByPlaceholderText(/burke/i);
+  // const emailInput = screen.getByPlaceholderText(/bluebill1049@hotmail.com/i);
+  // const message = screen.queryByTestId('messageDisplay');
+  
+  // const submitBtn = screen.getByRole('button');
+
+  // userEvent.type(firstNameInput, 'Priscila');
+  // userEvent.type(lastNameInput, 'Monteiro');
+  // userEvent.type(emailInput, 'test@test.com');
+  // userEvent.type(message, "some testing, some testing");
+  // userEvent.click(submitBtn);
+
+  // await waitFor(()=>{
+  //   const firstNameInput = screen.queryByText('Priscila');
+  //   expect(firstNameInput).toBeInTheDocument();
+
+  //   const lastNameInput = screen.queryByText('Monteiro');
+  //   expect(lastNameInput).toBeInTheDocument();
+
+  //   const emailInput = screen.queryByText('test@test.com');
+  //   expect(emailInput).toBeInTheDocument();
+
+  //   const message = screen.queryByText('some testing, some testing');
+  //   expect (message).toBeInTheDocument();
+
+  // });
     
 });
