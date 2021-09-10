@@ -85,7 +85,7 @@ test('renders "email must be a valid email address" if an invalid email is enter
     const emailInput = screen.queryAllByText(/bluebill1049@hotmail.com/i)
 
 
-    userEvent.type(screen.getByRole('textbox'), 'case@hotmail.com ')
+    userEvent.type(emailInput, 'case@hotmail.com ')
     const emailErr = screen.queryAllByText(/email/i);
 
 
