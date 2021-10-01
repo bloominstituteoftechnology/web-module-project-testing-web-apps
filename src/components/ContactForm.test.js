@@ -28,7 +28,20 @@ test('renders the contact form header', () =>
 // the component renders ONE error message if the user enters less than 4 characters into the firstname field. Make sure to use async / await and the correct screen method to account for state change.
 test('renders ONE error message if user enters less then 5 characters into firstname.', async () =>
 {
+    // Arrange: render ContactForm
+    render(<ContactForm />);
 
+    // Act: 
+    // 1. Give First Name input focus
+    const firstNameInput = screen.getByLabelText(/first name/i);
+
+    // 2. Type in name that has less than 5 characters
+    userEvent.type(firstNameInput, "Vlad");
+
+    // Assert: Check to see if error message appears
+    const firstNameError = screen.getByText(/error: firstName must have at least 5 characters/i);
+
+    expect(firstNameError).toBeInTheDocument();
 });
 
 // the component renders THREE error messages if the user submits without filling in any values.
