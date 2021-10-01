@@ -82,7 +82,7 @@ describe('Async no lastname input component', () => {
 	});
 })
 
-describe('Async Message text', () => {
+
 	test('renders all firstName, lastName and email text when submitted. Does NOT render message if message is not submitted.', async () => {
 		render(<ContactForm />);
 		const firstNameInput = screen.getByPlaceholderText('Edd');
@@ -90,15 +90,18 @@ describe('Async Message text', () => {
 		const emailInput = screen.getByPlaceholderText('bluebill1049@hotmail.com');
 		const contactButton = screen.getByRole('button');
 		// const messageInput = screen.getByPlaceholderText('type message here');
-		const messageBox = screen.findByText('Message:', {exact: true});
-		userEvent.type(firstNameInput, "Abraman");
-		userEvent.type(lastNameInput, "Gaaaarcia");
-		userEvent.type(emailInput, "abraman@bossin.com");
+		await waitFor(() => {
+			const messageBox = screen.queryByTestId("messageDisplay");
+			userEvent.type(firstNameInput, "Abraman");
+			userEvent.type(lastNameInput, "Gaaaarcia");
+			userEvent.type(emailInput, "abraman@bossin.com");
 		// userEvent.type(messageInput, "");
-		userEvent.click(contactButton);
-		expect(messageBox);
+			userEvent.click(contactButton);
+			expect(messageBox).not.toBeInTheDocument();
+		})
+		
 	});
-})
+
 
 describe('Async all forms submit component', () => {
 	test('renders all fields text when all fields are submitted.', async () => {
