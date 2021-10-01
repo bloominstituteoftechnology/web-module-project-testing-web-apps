@@ -5,24 +5,54 @@ import userEvent from '@testing-library/user-event';
 import ContactForm from './ContactForm';
 
 test('renders without errors', ()=>{
-    
+	render(<ContactForm />);
 });
 
-test('renders the contact form header', ()=> {
-    
+test('renders the contact form header', () => {
+	render(<ContactForm />);
+	const greetingHeader = screen.getByText("Contact Form");
+	expect(greetingHeader).toBeInTheDocument();
 });
 
-test('renders ONE error message if user enters less then 5 characters into firstname.', async () => {
-    
-});
+describe('Async component', () => {
+	test('renders ONE error message if user enters less then 5 characters into firstname.', async () => {
+		render(<ContactForm />);
+		const contactButton = screen.getByRole('button');
+		userEvent.click(contactButton);
+		const errorMessage = screen.findByText('must have at least 5 characters');
+		expect(errorMessage);
+	});
+		
+})
 
-test('renders THREE error messages if user enters no values into any fields.', async () => {
-    
-});
+describe('Async component', () => {
+	test('renders THREE error messages if user enters no values into any fields.', async () => {
+		render(<ContactForm />);
+		const contactButton = screen.getByRole('button');
+		const emailError = screen.findByText('must be a valid email address');
+		const errorMessage = screen.findByText('must have at least 5 characters');
+		const lastNameError = screen.findByText('is a required field');
+		userEvent.click(contactButton);
+		expect(emailError);
+		expect(errorMessage);
+		expect(lastNameError);
+	});
+})
 
-test('renders ONE error message if user enters a valid first name and last name but no email.', async () => {
-    
-});
+describe('Async Component', () => {
+	test('renders ONE error message if user enters a valid first name and last name but no email.', async () => {
+		render(<ContactForm />);
+		const firstNameInput = screen.getByPlaceholderText('Edd');
+		const lastNameInput = screen.getByPlaceholderText('Burke');
+		const contactButton = screen.getByRole('button');
+		const emailError = screen.findByText('must be a valid email address');
+		userEvent.type(firstNameInput, "Abraman");
+		userEvent.type(lastNameInput, "Gaaaarcia");
+		userEvent.click(contactButton);
+		expect(emailError);
+		
+	});
+})
 
 test('renders "email must be a valid email address" if an invalid email is entered', async () => {
     
