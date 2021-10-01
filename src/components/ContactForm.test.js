@@ -119,9 +119,26 @@ test('renders "lastName is a required field" if an last name is not entered and 
     // Arrange: render Contact Form
     render(<ContactForm />);
 
-    // Act:
+    // Act: Submit Contact Form with blank lastName input field
+    // 1. Give firstName input focus
+    const firstNameInput = screen.getByLabelText(/first name/i);
 
-    // Assert:
+    // 2. Type first name with more than 5 characters into firstName focus
+    userEvent.type(firstNameInput, "Vladislav");
+
+    // 3. Give email input focus
+    const emailInput = screen.getByLabelText(/email/i);
+
+    // 4. Type email into email focus
+    userEvent.type(emailInput, "vladislavbalasanyan@gmail.com");
+
+    // 5. Click submit button
+    const submitButton = screen.getByRole("button");
+    userEvent.click(submitButton);
+
+    // Assert: Check to see if lastName error message appears
+    const lastNameError = await screen.findByText(/error: lastName is a required field/i);
+    expect(lastNameError).toBeInTheDocument();
 
 });
 
