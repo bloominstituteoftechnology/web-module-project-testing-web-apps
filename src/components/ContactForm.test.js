@@ -33,15 +33,15 @@ test('renders ONE error message if user enters less then 5 characters into first
 
     // Act: 
     // 1. Give firstName input focus
-    const firstNameInput = screen.getByLabelText(/first name/i);
+    const firstNameInput = screen.getByLabelText(/first name*/i);
 
     // 2. Type name that has less than 5 characters into firstName focus
     userEvent.type(firstNameInput, "Vlad");
 
     // Assert: Check to see if error message appears
-    const firstNameError = await screen.findByText(/error: firstName must have at least 5 characters/i);
+    const errorMessages = await screen.findAllByTestId("error");
 
-    expect(firstNameError).toBeInTheDocument();
+    expect(errorMessages).toHaveLength(1);
 });
 
 // the component renders THREE error messages if the user submits without filling in any values.
@@ -56,14 +56,11 @@ test('renders THREE error messages if user enters no values into any fields.', a
     userEvent.click(submitButton);
 
     //Assert: Check to see if three error messages appear
-    const firstNameError = await screen.findByText(/error: firstName must have at least 5 characters/i);
-    expect(firstNameError).toBeInTheDocument();
-
-    const lastNameError = await screen.findByText(/error: lastName is a required field/i);
-    expect(lastNameError).toBeInTheDocument();
-
-    const emailError = await screen.findByText(/error: email must be a valid email address/i);
-    expect(emailError).toBeInTheDocument();
+    await waitFor(() =>
+    {
+        const errorMessages = screen.queryAllByTestId("error");
+        expect(errorMessages).toHaveLength(3);
+    });
 });
 
 // the component renders ONE error message if the user submits without filling in the email field.
@@ -74,13 +71,13 @@ test('renders ONE error message if user enters a valid first name and last name 
 
     // Act: Submit partially filled out Contact Form
     // 1. Give firstName input focus
-    const firstNameInput = screen.getByLabelText(/first name/i);
+    const firstNameInput = screen.getByLabelText(/first name*/i);
 
     // 2. Type first name with more than 5 characters into firstName focus
     userEvent.type(firstNameInput, "Vladislav");
 
     // 3. Give lastName input focus
-    const lastNameInput = screen.getByLabelText(/last name/i);
+    const lastNameInput = screen.getByLabelText(/last name*/i);
 
     // 4. Type last name into lastName focus
     userEvent.type(lastNameInput, "Balasanyan");
@@ -90,6 +87,9 @@ test('renders ONE error message if user enters a valid first name and last name 
     userEvent.click(submitButton);
 
     // Assert: Check to see if email error message appears
+    const errorMessages = await screen.getAllByTestId("error");
+    expect(errorMessages).toHaveLength(1);
+
     const emailError = await screen.findByText(/error: email must be a valid email address/i);
     expect(emailError).toBeInTheDocument();
 });
@@ -102,7 +102,7 @@ test('renders "email must be a valid email address" if an invalid email is enter
 
     // Act: Enter invalid email
     // 1. Give email input focus
-    const emailInput = screen.getByLabelText(/email/i);
+    const emailInput = screen.getByLabelText(/email*/i);
 
     // 2. Type invalid email
     userEvent.type(emailInput, "fake");
@@ -121,13 +121,13 @@ test('renders "lastName is a required field" if an last name is not entered and 
 
     // Act: Submit Contact Form with blank lastName input field
     // 1. Give firstName input focus
-    const firstNameInput = screen.getByLabelText(/first name/i);
+    const firstNameInput = screen.getByLabelText(/first name*/i);
 
     // 2. Type first name with more than 5 characters into firstName focus
     userEvent.type(firstNameInput, "Vladislav");
 
     // 3. Give email input focus
-    const emailInput = screen.getByLabelText(/email/i);
+    const emailInput = screen.getByLabelText(/email*/i);
 
     // 4. Type email into email focus
     userEvent.type(emailInput, "vladislavbalasanyan@gmail.com");
@@ -150,46 +150,44 @@ test('renders all firstName, lastName and email text when submitted. Does NOT re
 
     // Act: Submit Contact Form without message
     // 1. Give firstName input focus
-    const firstNameInput = screen.getByLabelText(/first name/i);
+    const firstNameInput = screen.getByLabelText(/first name*/i);
 
     // 2. Type first name with more than 5 characters into firstName focus
     const firstName = "Vladislav";
     userEvent.type(firstNameInput, firstName);
 
     // 3. Give lastName input focus
-    const lastNameInput = screen.getByLabelText(/last name/i);
+    const lastNameInput = screen.getByLabelText(/last name*/i);
 
     // 4. Type last name into lastName focus
     const lastName = "Balasanyan";
     userEvent.type(lastNameInput, lastName);
 
     // 5. Give email input focus
-    const emailInput = screen.getByLabelText(/email/i);
+    const emailInput = screen.getByLabelText(/email*/i);
 
     // 6. Type email into email focus
     const email = "vladislavbalasanyan@gmail.com";
     userEvent.type(emailInput, email);
 
-    // 7. Give message input focus
-    const messageInput = screen.getByLabelText(/message/i);
-
-    // 8. Type empty string into message focus
-    const message = "";
-    userEvent.type(messageInput, message);
-
-    // 9. Click submit button
+    // 7. Click submit button
     const submitButton = screen.getByRole("button");
     userEvent.click(submitButton);
 
     // Assert: Check to make sure message value is not rendered
-    const firstNameRender = await screen.findByText(firstName);
-    expect(firstNameRender).toBeInTheDocument();
 
-    const lastNameRender = await screen.findByText(lastName);
-    expect(lastNameRender).toBeInTheDocument();
+    await waitFor(() =>
+    {
+        const firstNameRender = screen.queryByText(firstName);
+        const lastNameRender = screen.queryByText(lastName);
+        const emailRender = screen.queryByText(email);
+        const messageRender = screen.queryByTestId("messageDisplay");
 
-    const emailRender = await screen.findByText(email);
-    expect(emailRender).toBeInTheDocument();
+        expect(firstNameRender).toBeInTheDocument();
+        expect(lastNameRender).toBeInTheDocument();
+        expect(emailRender).toBeInTheDocument();
+        expect(messageRender).not.toBeInTheDocument();
+    });
 });
 
 // renders all fields when the user submits with valid text filled in for all fields.
@@ -200,21 +198,21 @@ test('renders all fields text when all fields are submitted.', async () =>
 
     // Act: Submit Contact Form with message
     // 1. Give firstName input focus
-    const firstNameInput = screen.getByLabelText(/first name/i);
+    const firstNameInput = screen.getByLabelText(/first name*/i);
 
     // 2. Type first name with more than 5 characters into firstName focus
     const firstName = "Vladislav";
     userEvent.type(firstNameInput, firstName);
 
     // 3. Give lastName input focus
-    const lastNameInput = screen.getByLabelText(/last name/i);
+    const lastNameInput = screen.getByLabelText(/last name*/i);
 
     // 4. Type last name into lastName focus
     const lastName = "Balasanyan";
     userEvent.type(lastNameInput, lastName);
 
     // 5. Give email input focus
-    const emailInput = screen.getByLabelText(/email/i);
+    const emailInput = screen.getByLabelText(/email*/i);
 
     // 6. Type email into email focus
     const email = "vladislavbalasanyan@gmail.com";
@@ -232,15 +230,17 @@ test('renders all fields text when all fields are submitted.', async () =>
     userEvent.click(submitButton);
 
     // Assert: Check to make sure all fields are rendered
-    const firstNameRender = await screen.findByText(firstName);
-    expect(firstNameRender).toBeInTheDocument();
 
-    const lastNameRender = await screen.findByText(lastName);
-    expect(lastNameRender).toBeInTheDocument();
+    await waitFor(() =>
+    {
+        const firstNameRender = screen.queryByText(firstName);
+        const lastNameRender = screen.queryByText(lastName);
+        const emailRender = screen.queryByText(email);
+        const messageRender = screen.queryByTestId("messageDisplay");
 
-    const emailRender = await screen.findByText(email);
-    expect(emailRender).toBeInTheDocument();
-
-    // const messageRender = await screen.getByTestId("message")
-    // expect(messageRender).toBeInTheDocument();
+        expect(firstNameRender).toBeInTheDocument();
+        expect(lastNameRender).toBeInTheDocument();
+        expect(emailRender).toBeInTheDocument();
+        expect(messageRender).toBeInTheDocument();
+    });
 });
