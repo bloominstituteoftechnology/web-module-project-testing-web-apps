@@ -69,7 +69,29 @@ test('renders THREE error messages if user enters no values into any fields.', a
 // the component renders ONE error message if the user submits without filling in the email field.
 test('renders ONE error message if user enters a valid first name and last name but no email.', async () =>
 {
+    // Arrange: render Contact Form
+    render(<ContactForm />);
 
+    // Act: Submit partially filled out Contact Form
+    // 1. Give firstName input focus
+    const firstNameInput = screen.getByLabelText(/first name/i);
+
+    // 2. Type first name with more than 5 characters into firstName focus
+    userEvent.type(firstNameInput, "Vladislav");
+
+    // 3. Give lastName input focus
+    const lastNameInput = screen.getByLabelText(/last name/i);
+
+    // 4. Type last name into lastName focus
+    userEvent.type(lastNameInput, "Balasanyan");
+
+    // 5. Click submit button
+    const submitButton = screen.getByRole("button");
+    userEvent.click(submitButton);
+
+    // Assert: Check to see if email error message appears
+    const emailError = await screen.findByText(/error: email must be a valid email address/i);
+    expect(emailError).toBeInTheDocument();
 });
 
 // the component renders the text *"email must be a valid email address"* if an invalid email address is typed into the email field.
