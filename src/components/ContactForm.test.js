@@ -39,7 +39,7 @@ test('renders ONE error message if user enters less then 5 characters into first
     userEvent.type(firstNameInput, "Vlad");
 
     // Assert: Check to see if error message appears
-    const firstNameError = screen.getByText(/error: firstName must have at least 5 characters/i);
+    const firstNameError = await screen.findByText(/error: firstName must have at least 5 characters/i);
 
     expect(firstNameError).toBeInTheDocument();
 });
