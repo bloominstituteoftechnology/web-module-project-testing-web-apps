@@ -32,10 +32,10 @@ test('renders ONE error message if user enters less then 5 characters into first
     render(<ContactForm />);
 
     // Act: 
-    // 1. Give First Name input focus
+    // 1. Give firstName input focus
     const firstNameInput = screen.getByLabelText(/first name/i);
 
-    // 2. Type in name that has less than 5 characters
+    // 2. Type name that has less than 5 characters into firstName focus
     userEvent.type(firstNameInput, "Vlad");
 
     // Assert: Check to see if error message appears
@@ -47,7 +47,23 @@ test('renders ONE error message if user enters less then 5 characters into first
 // the component renders THREE error messages if the user submits without filling in any values.
 test('renders THREE error messages if user enters no values into any fields.', async () =>
 {
+    // Arrange: render Contact Form
+    render(<ContactForm />);
 
+    // Act: Submit blank Contact Form
+    // 1. Click submit button
+    const submitButton = screen.getByRole("button");
+    userEvent.click(submitButton);
+
+    //Assert: Check to see if three error messages appear
+    const firstNameError = await screen.findByText(/error: firstName must have at least 5 characters/i);
+    expect(firstNameError).toBeInTheDocument();
+
+    const lastNameError = await screen.findByText(/error: lastName is a required field/i);
+    expect(lastNameError).toBeInTheDocument();
+
+    const emailError = await screen.findByText(/error: email must be a valid email address/i);
+    expect(emailError).toBeInTheDocument();
 });
 
 // the component renders ONE error message if the user submits without filling in the email field.
