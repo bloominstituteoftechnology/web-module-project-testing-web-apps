@@ -115,6 +115,7 @@ const ContactForm = () => {
             name="message"
             id="message"
             value={form.message}
+            placeholder="type message here"
           />
           {(errors.message) && <p data-testid="error">Error: {errors.message}</p>}
         </div>
