@@ -1,19 +1,20 @@
 import React from 'react';
 import {render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
-
 import ContactForm from './ContactForm';
 
 test('renders without errors', ()=>{
-    
+    render(<ContactForm/>);
 });
 
 test('renders the contact form header', ()=> {
-    
+    const header = screen.queryByText(/contact form/i);
 });
 
 test('renders ONE error message if user enters less then 5 characters into firstname.', async () => {
-    
+    userEvent.type(firstName, 'ab');
+
+    expect(error).toBeInTheDocument();
 });
 
 test('renders THREE error messages if user enters no values into any fields.', async () => {
