@@ -20,6 +20,7 @@ test('renders ONE error message if user enters less then 5 characters into first
     const firstname = screen.getByLabelText(/First Name*/i);
     userEvent.type(firstname, "Alex");
     const errorMessage = screen.getByText(/must have at least 5 characters/i);
+    expect(errorMessage).toBeTruthy();
 });
 
 test('renders THREE error messages if user enters no values into any fields.', async () => {
@@ -29,6 +30,9 @@ test('renders THREE error messages if user enters no values into any fields.', a
     const errorMessage1 = screen.getByText(/must have at least 5 characters/i);
     const errorMessage2 = screen.getByText(/must be a valid email address./i);
     const errorMessage3 = screen.getByText(/is a required field/i);
+    expect(errorMessage1).toBeTruthy();
+    expect(errorMessage2).toBeTruthy();
+    expect(errorMessage3).toBeTruthy();
 });
 
 test('renders ONE error message if user enters a valid first name and last name but no email.', async () => {
@@ -40,6 +44,7 @@ test('renders ONE error message if user enters a valid first name and last name 
     const submit = screen.getByRole('button');
     userEvent.click(submit);
     const errorMessage2 = screen.getByText(/must be a valid email address./i);
+    expect(errorMessage2).toBeTruthy();
 });
 
 test('renders "email must be a valid email address" if an invalid email is entered', async () => {
@@ -59,6 +64,7 @@ test('renders "lastName is a required field" if an last name is not entered and 
     const submit = screen.getByRole('button');
     userEvent.click(submit);
     const errorMessage = screen.getByText(/lastName is a required field/i);
+    expect(errorMessage).toBeTruthy();
 });
 
 test('renders all firstName, lastName and email text when submitted. Does NOT render message if message is not submitted.', async () => {
@@ -75,6 +81,9 @@ test('renders all firstName, lastName and email text when submitted. Does NOT re
     const lastNameRendered = screen.getByTestId(/lastnameDisplay/i);
     const emailRendered = screen.getByTestId(/emailDisplay/i);
     const messageRendered = screen.queryByTestId(/messageDisplay/i);
+    expect(firstNameRendered).toBeTruthy();
+    expect(lastNameRendered).toBeTruthy();
+    expect(emailRendered).toBeTruthy();
     expect(messageRendered).not.toBeTruthy();
 });
 
@@ -94,4 +103,8 @@ test('renders all fields text when all fields are submitted.', async () => {
     const lastNameRendered = screen.getByTestId(/lastnameDisplay/i);
     const emailRendered = screen.getByTestId(/emailDisplay/i);
     const messageRendered = screen.getByTestId(/messageDisplay/i);
+    expect(firstNameRendered).toBeTruthy();
+    expect(lastNameRendered).toBeTruthy();
+    expect(emailRendered).toBeTruthy();
+    expect(messageRendered).toBeTruthy();
 });
