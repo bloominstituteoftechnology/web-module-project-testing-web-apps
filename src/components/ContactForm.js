@@ -81,7 +81,7 @@ const ContactForm = () => {
             id="firstName"
             placeholder="Edd"
           />
-          {(errors.firstName) && <p data-testid="error">Error: {errors.firstName}</p>}
+          {(errors.firstName) && <p data-testid="error">Errorf: {errors.firstName}</p>}
         </div>
 
         <div>
@@ -121,7 +121,7 @@ const ContactForm = () => {
 
         {displayData && <DisplayComponent form={form}/>}
 
-        <input type="submit" />
+        <input type="submit" data-testid="button" />
       </form>
     </div>
   );
