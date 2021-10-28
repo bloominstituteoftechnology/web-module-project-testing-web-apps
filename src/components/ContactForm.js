@@ -19,6 +19,7 @@ const ContactForm = () => {
   const [displayData, setDisplayData] = useState(false);
   const [form, setForm] = useState(formData);
   const [errors, setErrors] = useState(errorData);
+  const [err, setErr]= useState()
 
   const errorHandling = (fieldName, fieldValue) => {
     if (fieldName === "firstName" && fieldValue.length < 5)
