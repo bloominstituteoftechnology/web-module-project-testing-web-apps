@@ -17,8 +17,6 @@ In this challenge, you will be writing tests for a contact form that has been bu
 
 As a developer, you will be writing tests for every component. As we've learned, tests are a very important part of programming. The tests you will write will help you feel confident in the code you push to production!
 
-![Contact Example](project-goals.gif)
-
 ***Make sure to complete your tasks one at a time and complete test each task before proceding forward.***
 
 ## Instructions
