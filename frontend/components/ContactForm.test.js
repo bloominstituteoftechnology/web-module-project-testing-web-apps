@@ -41,16 +41,19 @@ test('renders ONE error message if user enters a valid first name and last name 
     userEvent.type(firstName, 'steven')
     userEvent.type(lastname, 'Grant')
     userEvent.type(await submit)
-    expect(screen.findByAllText('Error: email must be a valid email address.')).toBeVisible
-});
+    expect(screen.findByAllText('Error: email must be a valid email address.')).toBeVisible});
 
 test('renders "email must be a valid email address" if an invalid email is entered', async () => {
-
-});
+    render(<ContactForm />)
+    const email = screen.findByLabelText('email')
+    userEvent.type(email, 'email')
+    expect(screen.findByText('Error: email must be a valid email address.')).toBeVisible});
 
 test('renders "lastName is a required field" if an last name is not entered and the submit button is clicked', async () => {
-
-});
+    render(<ContactForm />)
+    const submit = screen.findByRole('button')
+    userEvent.click(await submit)
+    expect(screen.findByText('Error: lastName is a required field.')).toBeVisible});
 
 test('renders all firstName, lastName and email text when submitted. Does NOT render message if message is not submitted.', async () => {
 
