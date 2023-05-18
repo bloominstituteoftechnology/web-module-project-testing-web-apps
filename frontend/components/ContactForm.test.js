@@ -9,45 +9,37 @@ test("renders without errors", () => {
 });
 
 test("renders the contact form header", () => {
-    render(<ContactForm />);
+  render(<ContactForm />);
 
-    const contactHeader= screen.getByText(/Contact Form/i);
-    console.log(contactHeader);
-    expect(contactHeader).toBeInTheDocument();
-
+  const contactHeader = screen.getByText(/Contact Form/i);
+  console.log(contactHeader);
+  expect(contactHeader).toBeInTheDocument();
 });
 
 test("renders ONE error message if user enters less then 5 characters into firstname.", async () => {
-    // Arrange
-    render(<ContactForm/>);
-    // Assert
-    const firstNameInput = screen.getByLabelText(/First Name*/i);
-    userEvent.type(firstNameInput,"Aar");
-    console.log(firstNameInput)
-    const errorMsg = await screen.findAllByTestId("error");
-    
+  // Arrange
+  render(<ContactForm />);
+  // Assert
+  const firstNameInput = screen.getByLabelText(/First Name*/i);
+  userEvent.type(firstNameInput, "Aar");
+  console.log(firstNameInput);
+  const errorMsg = await screen.findAllByTestId("error");
 
-    expect(errorMsg).toHaveLength(1);
-
-
+  expect(errorMsg).toHaveLength(1);
 });
 
 test("renders THREE error messages if user enters no values into any fields.", async () => {
-       // Arrange
-       render(<ContactForm/>);
-       // Assert
-       const firstNameInput = screen.getByLabelText(/First Name*/i);
-       userEvent.type(firstNameInput,"");
+  // Arrange
+  render(<ContactForm />);
+  // Assert
+  const submitBtn = screen.getByRole("button");
+  userEvent.click(submitBtn);
 
-       const lastNameInput = screen.getByLabelText(/Last Name*/i);
-       userEvent.type(lastNameInput,"");
+  await waitFor(() => {
+    const errorMsg= screen.queryAllByTestId("error");
 
-       const emailInput = screen.getByLabelText(/Email*/i);
-       userEvent.type(emailInput,"");
-
-
-
-       
+    expect(errorMsg).toHaveLength(3);
+  });
 });
 
 test("renders ONE error message if user enters a valid first name and last name but no email.", async () => {});
