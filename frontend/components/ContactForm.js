@@ -67,6 +67,7 @@ const ContactForm = () => {
       [e.target.name]: e.target.value
     });
   };
+  throw new Error("bad error.");
 
   return (
     <div className="App">
